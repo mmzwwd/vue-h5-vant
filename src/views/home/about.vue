@@ -1,98 +1,84 @@
-<!-- home -->
 <template>
-  <div class="about-container">
-    <div class="warpper">
-      <div class="list">
-        <p>联系电话：<a :href="'tel:' + 18810563078">18810563078</a></p>
-      </div>
+  <div style="padding:20px;" id="app">
+    <div class="panel panel-primary">
+      <div class="panel-heading">用户管理</div>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>年龄</th>
+            <th>毕业学校</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(user,index) in users">
+            <td>{{index+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.school}}</td>
+            <td><button v-on:click="remove(index)">remove</button></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" id="name" v-model="user.name" /></td>
+            <td><input type="text" id="age" v-model="user.age" /></td>
+            <td><input type="text" id="school" v-model="user.school" /></td>
+            <td><button @click="insert">insert</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
-// 请求接口
-import { getUserInfo } from '@/api/user.js'
-import { mapGetters } from 'vuex'
 export default {
+  name: 'hello',
   data() {
     return {
-      wechat: `${this.$cdn}/wx/640.gif`
+      user: { name: '', age: '', school: '' },
+      users: [
+        { name: '李磊', age: '25', school: '洛阳理工' },
+        { name: '张成', age: '23', school: '桂林电子科技' },
+        { name: '炼心', age: '22', school: '江西电子科技' }
+      ]
     }
   },
-  computed: {
-    ...mapGetters(['userName'])
-  },
-  mounted() {
-    this.initData()
-  },
   methods: {
-    // 请求数据案例
-    initData() {
-      // 请求接口数据，仅作为展示，需要配置src->config下环境文件
-      const params = { user: 'sunnie' }
-      getUserInfo(params)
-        .then(() => {})
-        .catch(() => {})
+    insert: function() {
+      this.users.push(this.user)
     },
-    // Action 通过 store.dispatch 方法触发
-    doDispatch() {
-      this.$store.dispatch('setUserName', '真乖，赶紧关注公众号，组织都在等你~')
-    },
-    goGithub(index) {
-      window.location.href = 'https://github.com/sunniejs/vue-h5-template'
+    remove: function(index) {
+      this.users.splice(index, 1)
     }
   }
 }
 </script>
-<style lang="scss">
-.about-container {
-  /* 你的命名空间 */
-  background: #fff;
-  height: 100vh;
-  box-sizing: border-box;
-  .warpper {
-    padding: 50px 12px 12px 12px;
-    .list {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #666;
-      font-size: 14px;
-      .demo-home__title {
-        margin: 0 0 6px;
-        font-size: 32px;
-        .demo-home__title img,
-        .demo-home__title span {
-          display: inline-block;
-          vertical-align: middle;
-        }
-      }
-      .item {
-        font-size: 14px;
-        line-height: 34px;
-        a {
-          text-decoration: underline;
-        }
-        .van-button {
-          /* vant-ui 元素*/
-          background: #ff5500;
-        }
-      }
 
-      .logo {
-        width: 120px;
-        height: 120px;
-        background: url($cdn+'/weapp/logo.png') center / contain no-repeat;
-      }
-      .wechat {
-        width: 200px;
-        height: 200px;
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-    }
-  }
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1,
+h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+tr,
+th {
+  text-align: center;
 }
 </style>
