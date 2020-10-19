@@ -12,8 +12,6 @@ import store from './store'
 import { $cdn } from '@/config'
 Vue.prototype.$cdn = $cdn
 
-import "@/components/Vant";
-
 // 全局引入按需引入UI库 vant
 import '@/plugins/vant'
 // 引入全局样式

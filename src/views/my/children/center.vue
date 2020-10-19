@@ -20,7 +20,7 @@
       </div>
     </main>
 
-    <Footer page="my" />
+    <!-- <Footer page="my" /> -->
   </div>
 </template>
 
