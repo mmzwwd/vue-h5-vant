@@ -28,6 +28,48 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: "/pricePolicy",
+    meta: {
+      title: "奖励政策"
+    },
+    component: () => import("@/views/home/pricePolicy")
+  },
+  {
+    path: "/pushTutorial",
+    meta: {
+      title: "推广教程"
+    },
+    component: () => import("@/views/home/pushTutorial")
+  },
+  {
+    path: "/creditCard",
+    meta: {
+      title: "信用卡"
+    },
+    component: () => import("@/views/home/creditCard")
+  },
+  {
+    path: "/applyforother",
+    meta: {
+      title: "更换申请信息"
+    },
+    component: () => import("@/views/home/applyforother")
+  },
+  {
+    path: "/schedule",
+    meta: {
+      title: "进度查询"
+    },
+    component: () => import("@/views/home/schedule")
+  },
+  {
+    path: "/cardList",
+    meta: {
+      title: "银行"
+    },
+    component: () => import("@/views/home/cardList")
+  },
+  {
     path: "/my",
     component: () => import("@/views/my/index"),
     redirect: "/my/center",
