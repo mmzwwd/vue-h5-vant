@@ -45,6 +45,9 @@ export default {
 </script>
 <style>
 .btn-container .van-cell__value--alone {
+  text-align: center;
+}
+.btn-container .van-cell__value--alone {
   color: #fff;
 }
 .van-popup--center.van-popup--round {
