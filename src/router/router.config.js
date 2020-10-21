@@ -21,7 +21,7 @@ export const constantRouterMap = [
       {
         path: '/about',
         name: 'About',
-        component: () => import('@/views/home/about'),
+        component: () => import('@/views/about/about'),
         meta: { title: '关于我', keepAlive: false }
       },
 
@@ -119,13 +119,6 @@ export const constantRouterMap = [
     }
   },
   {
-    path: "/registration",
-    component: () => import("@/views/treaty/registration.vue"),
-    meta: {
-      title: "注册协议"
-    }
-  },
-  {
     path: "/information",
     component: () => import("@/views/treaty/information.vue"),
     meta: {
@@ -137,6 +130,27 @@ export const constantRouterMap = [
     component: () => import("@/views/treaty/agreement.vue"),
     meta: {
       title: "用户隐私保护政策"
+    }
+  },
+  {
+    path: "/authorization",
+    component: () => import("@/views/treaty/authorization.vue"),
+    meta: {
+      title: "理事推广规范守则"
+    }
+  },
+  {
+    path: "/setting",
+    component: () => import("@/views/setting/setting.vue"),
+    meta: {
+      title: "设置"
+    },
+  },
+  {
+    path: "/infoabout",
+    component: () => import("@/views/setting/infoabout.vue"),
+    meta: {
+      title: "关于"
     }
   },
 

@@ -10,7 +10,7 @@ export default {
 </script>
 <style lang="scss">
 #app {
-  min-height: 100%;
+  height: 100%;
 }
 * {
   margin: 0;
@@ -19,6 +19,6 @@ export default {
 html,
 body {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 </style>

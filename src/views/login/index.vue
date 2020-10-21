@@ -6,8 +6,9 @@
         <van-field v-model="tel" type="tel" label="手机号" :rules="[{ required: true, message: '请填写用户名' }]" placeholder="请输入手机号" />
         <van-field v-model="sms" center clearable label="短信验证" :rules="[{ required: true, message: '请填写短信验证码' }]" placeholder="请输入短信验证码">
           <template #button>
-            <van-button color="#F78400" plain type="primary" v-show="show" @click="getCode" round size="small">获取验证码</van-button>
-            <van-button color="#F78400" plain type="primary" v-show="!show" round size="small">{{count}} s</van-button>
+            <!-- <van-button color="#F78400" plain type="primary" v-show="show" @click="getCode" round size="small">获取验证码</van-button>
+            <van-button color="#F78400" plain type="primary" v-show="!show" round size="small">{{count}} s</van-button> -->
+            <verification></verification>
           </template>
         </van-field>
         <div class="login-button">
@@ -21,8 +22,10 @@
 </template>
 
 <script>
+import verification from '@/components/verification'
 import { constants } from 'crypto'
 export default {
+  components: { verification },
   data() {
     return {
       show: true,

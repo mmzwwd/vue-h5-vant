@@ -7,7 +7,7 @@
       <van-field v-model="tel" type="tel" placeholder="请输入申请人手机号" label="手机号" />
       <van-field v-model="sms" center clearable label="短信验证码" placeholder="请输入短信验证码">
         <template #button>
-          <van-button color="#d6d6e0" plain type="primary" round size="small">发送验证码</van-button>
+          <verification></verification>
         </template>
       </van-field>
       <div class="note">个人信息将影响审核及收入提现，请确保信息真实有效</div>
@@ -16,7 +16,7 @@
           <div class="agree">
             <img v-if="!activeClass" :src="require('./../../assets/img/image/wxz.svg')" id="checkbox" @click="getItem()"></img>
             <img v-else :src="require('./../../assets/img/image/xz.svg')" id="checkbox" @click="getItem()"></img>
-            <span class="agree-text"> 我同意 <span>《用户注册协议》</span> <span>《用户隐私保护政策》</span> <span>《个人身份信息使用授权书》</span></span>
+            <span class="agree-text"> 我同意 <span @click="agreeClick('user')">《用户注册协议》</span> <span @click="agreeClick('privacy')">《用户隐私保护政策》</span> <span @click="agreeClick('information')">《个人身份信息使用授权书》</span></span>
           </div>
           <div class="btn">确认申请</div>
         </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import verification from '@/components/verification'
 export default {
   name: 'applyforother',
   data() {
@@ -38,10 +39,20 @@ export default {
       sms: ''
     }
   },
-  components: {},
+  components: { verification },
   created() {},
   mounted() {},
   methods: {
+    agreeClick(types) {
+      console.log(types)
+      if (types == 'user') {
+        this.$router.push('/registration')
+      } else if (types == 'privacy') {
+        this.$router.push('/agreement')
+      } else if (types == 'information') {
+        this.$router.push('/information')
+      }
+    },
     getItem() {
       this.activeClass = !this.activeClass
     }
@@ -51,6 +62,10 @@ export default {
 <style>
 .protocol-checked {
   margin-left: 10px;
+}
+.applyforother .van-cell {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 </style>
 <style lang="scss"  scoped>
@@ -88,12 +103,14 @@ export default {
           position: relative;
           #checkbox {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             margin-right: 10px;
             background-repeat: no-repeat;
             line-height: 12px;
-            background-repeat: no-repeat;
+            line-height: 16px;
+            top: 3px;
+            left: 4px;
           }
           .agree-text {
             line-height: 22px;

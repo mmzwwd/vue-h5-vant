@@ -5,9 +5,9 @@
       <div class="info"> 光大银行</div>
     </div>
     <div class="tip">建议在申请办卡后3到7个工作日查询进度</div>
-    <van-field v-model="text" label="身份证" />
-    <van-field v-model="tel" type="tel" label="手机号" />
-    <van-field v-model="digit" type="digit" label="姓名" />
+    <van-field v-model="text" label="身份证" placeholder="请输入身份证" />
+    <van-field v-model="tel" type="tel" label="手机号" placeholder="请输入手机号" />
+    <van-field v-model="digit" type="digit" label="姓名" placeholder="请输入姓名" />
     <van-field v-model="sms" center clearable label="图片验证" placeholder="点击图片可刷新">
       <template #button>
         <van-button color="#d6d6e0" plain type="primary" round size="small">发送验证码</van-button>
@@ -15,14 +15,14 @@
     </van-field> <!-- 输入密码 -->
     <van-field v-model="sms" center clearable label="短信验证" placeholder="请输入短信验证码">
       <template #button>
-        <van-button color="#F78400" plain type="primary" v-show="show" @click="getCode" round size="small">获取验证码</van-button>
-        <van-button color="#F78400" plain type="primary" v-show="!show" round size="small">{{count}} s</van-button>
+        <!-- 获取验证码 -->
+        <verification></verification>
       </template>
     </van-field>
     <div class="agree">
       <img v-if="!activeClass" :src="require('./../../assets/img/image/wxz.svg')" id="checkbox" @click="getItem()"></img>
       <img v-else :src="require('./../../assets/img/image/xz.svg')" id="checkbox" @click="getItem()"></img>
-      <span class="agree-text"> 我同意 <span>《用户注册协议》</span> <span>《用户隐私保护政策》</span> <span>《个人身份信息使用授权书》</span></span>
+      <span class="agree-text"> 我同意<span @click="agreeClick('information')">《用户授权协议》</span></span>
     </div>
     <div class="btn">查询</div>
 
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import verification from '@/components/verification'
 export default {
   name: 'schedule',
   data() {
@@ -44,10 +45,20 @@ export default {
       sms: ''
     }
   },
-  components: {},
+  components: { verification },
   created() {},
   mounted() {},
   methods: {
+    agreeClick(types) {
+      console.log(types)
+      if (types == 'user') {
+        this.$router.push('/registration')
+      } else if (types == 'privacy') {
+        this.$router.push('/agreement')
+      } else if (types == 'information') {
+        this.$router.push('/information')
+      }
+    },
     getCode() {
       const TIME_COUNT = 60
       if (!this.timer) {
@@ -70,6 +81,12 @@ export default {
   }
 }
 </script>
+<style>
+.schedule .van-cell {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+</style>
 <style lang="scss"  scoped>
 .schedule {
   background: #fff;
@@ -130,7 +147,7 @@ export default {
   .btn {
     width: 80%;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     height: 40px;
     line-height: 40px;
     font-size: 16px;
@@ -140,19 +157,20 @@ export default {
     color: #fff;
   }
   .agree {
-    width: 80%;
+    width: 90%;
     height: 30px;
     margin: 0 auto;
     margin-top: 18px;
     position: relative;
     #checkbox {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       margin-right: 10px;
       background-repeat: no-repeat;
-      line-height: 12px;
-      background-repeat: no-repeat;
+      line-height: 16px;
+      top: 3px;
+      left: 4px;
     }
     .agree-text {
       line-height: 22px;
