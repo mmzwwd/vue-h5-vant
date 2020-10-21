@@ -160,7 +160,13 @@ export const constantRouterMap = [
       title: "常见问题"
     }
   },
-
+  {
+    path: "/contacts",
+    component: () => import("@/views/about/contacts/contacts.vue"),
+    meta: {
+      title: "联系推荐人"
+    }
+  },
 
 
 ]
