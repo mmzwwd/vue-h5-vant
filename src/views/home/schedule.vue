@@ -15,7 +15,8 @@
     </van-field> <!-- 输入密码 -->
     <van-field v-model="sms" center clearable label="短信验证" placeholder="请输入短信验证码">
       <template #button>
-        <van-button color="#F78400" plain type="primary" round size="small">发送验证码</van-button>
+        <van-button color="#F78400" plain type="primary" v-show="show" @click="getCode" round size="small">获取验证码</van-button>
+        <van-button color="#F78400" plain type="primary" v-show="!show" round size="small">{{count}} s</van-button>
       </template>
     </van-field>
     <div class="agree">
@@ -33,6 +34,9 @@ export default {
   name: 'schedule',
   data() {
     return {
+      show: true,
+      count: '',
+      timer: null,
       activeClass: false,
       text: '',
       tel: '',
@@ -44,6 +48,22 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    getCode() {
+      const TIME_COUNT = 60
+      if (!this.timer) {
+        this.count = TIME_COUNT
+        this.show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= TIME_COUNT) {
+            this.count--
+          } else {
+            this.show = true
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
+      }
+    },
     getItem() {
       this.activeClass = !this.activeClass
     }

@@ -1,21 +1,23 @@
 <template>
-  <header class="login">
-    <van-icon name="point-gift-o" class="orange mt-30 logo"></van-icon>
-    <div class>
-      <!-- 手机号码 -->
-      <div class="handset ml-20 mr-20 flex jc-sb pb-5">
-        <input v-model="phone" class="f14" type="text" placeholder="手机号" />
-        <input class="gray f12 bg-fff" type="button" value=" 获取验证码" />
-      </div>
-      <!-- 验证码 -->
-      <div class="handset ml-20 mr-20 flex jc-sb mt-20 pb-5">
-        <input v-model="smsCode" class="f14" placeholder="验证码" />
-      </div>
-
-      <!-- 登录 -->
-      <button @click="login" class="butt ml-20 mr-20 fff">登录</button>
+  <div class='login'>
+    <div class="center">
+      <img class="center-img" :src="require('./../../assets/img/logo.png')" alt="">
+      <van-form @submit="onSubmit">
+        <van-field v-model="tel" type="tel" label="手机号" :rules="[{ required: true, message: '请填写用户名' }]" placeholder="请输入手机号" />
+        <van-field v-model="sms" center clearable label="短信验证" :rules="[{ required: true, message: '请填写短信验证码' }]" placeholder="请输入短信验证码">
+          <template #button>
+            <van-button color="#F78400" plain type="primary" v-show="show" @click="getCode" round size="small">获取验证码</van-button>
+            <van-button color="#F78400" plain type="primary" v-show="!show" round size="small">{{count}} s</van-button>
+          </template>
+        </van-field>
+        <div class="login-button">
+          <van-button round block type="info" color="#ff5f16" native-type="submit">
+            登陆
+          </van-button>
+        </div>
+      </van-form>
     </div>
-  </header>
+  </div>
 </template>
 
 <script>
@@ -23,11 +25,30 @@ import { constants } from 'crypto'
 export default {
   data() {
     return {
+      show: true,
+      count: '',
+      timer: null,
       phone: '13800000000',
       smsCode: '123456'
     }
   },
   methods: {
+    getCode() {
+      const TIME_COUNT = 60
+      if (!this.timer) {
+        this.count = TIME_COUNT
+        this.show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= TIME_COUNT) {
+            this.count--
+          } else {
+            this.show = true
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
+      }
+    },
     login() {
       // 发送请求,用post方式
       let url = '/login'
@@ -64,34 +85,19 @@ export default {
 .login {
   height: 100vh;
   background-color: #fff;
-}
-
-// 手机号码
-header {
-  text-align: center;
-
-  img {
-    margin: 79px auto;
-  }
-
-  // 验证码
-  .handset {
-    border-bottom: 1px solid #f8f8f8;
-
-    input {
-      border: none;
-      outline: none;
+  // display: flex;
+  .center {
+    padding-top: 100px;
+    // align-self: center;
+    .center-img {
+      display: block;
+      margin: auto;
+      width: 20%;
+      margin-bottom: 20px;
     }
-  }
-
-  // 登录按钮
-  .butt {
-    margin-top: 20px;
-    border-radius: 3px;
-    background-color: #ff5f16;
-    width: calc((260vw - 5px) / 3);
-    height: 40px;
-    border: none;
+    .login-button {
+      margin: 40px 16px 16px 16px;
+    }
   }
 }
 </style>

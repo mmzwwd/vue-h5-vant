@@ -97,4 +97,48 @@ export const constantRouterMap = [
       title: "登陆"
     }
   },
+  {
+    path: "/register",
+    component: () => import("@/views/register/register.vue"),
+    meta: {
+      title: "理事注册"
+    }
+  },
+  {
+    path: "/registerArr",
+    component: () => import("@/views/register/registerArr.vue"),
+    meta: {
+      title: "理事注册成功"
+    }
+  },
+  {
+    path: "/registration",
+    component: () => import("@/views/treaty/registration.vue"),
+    meta: {
+      title: "注册协议"
+    }
+  },
+  {
+    path: "/registration",
+    component: () => import("@/views/treaty/registration.vue"),
+    meta: {
+      title: "注册协议"
+    }
+  },
+  {
+    path: "/information",
+    component: () => import("@/views/treaty/information.vue"),
+    meta: {
+      title: "用户授权协议"
+    }
+  },
+  {
+    path: "/agreement",
+    component: () => import("@/views/treaty/agreement.vue"),
+    meta: {
+      title: "用户隐私保护政策"
+    }
+  },
+
+
 ]
