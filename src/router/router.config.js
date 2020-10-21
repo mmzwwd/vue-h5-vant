@@ -153,6 +153,14 @@ export const constantRouterMap = [
       title: "关于"
     }
   },
+  {
+    path: "/matter",
+    component: () => import("@/views/about/matter/matter.vue"),
+    meta: {
+      title: "常见问题"
+    }
+  },
+
 
 
 ]

@@ -2,25 +2,32 @@
   <div class='applyforother'>
     <div class="padding-to">
       <p class="title">更换申请信息</p>
-      <van-field v-model="tel" type="tel" placeholder="请输入申请人真实姓名" label="姓名" />
-      <van-field v-model="tel" type="tel" placeholder="请输入申请人真实身份证号" label="身份证号" />
-      <van-field v-model="tel" type="tel" placeholder="请输入申请人手机号" label="手机号" />
-      <van-field v-model="sms" center clearable label="短信验证码" placeholder="请输入短信验证码">
-        <template #button>
-          <verification></verification>
-        </template>
-      </van-field>
-      <div class="note">个人信息将影响审核及收入提现，请确保信息真实有效</div>
-      <div class="footer_view">
-        <div class="protocol">
-          <div class="agree">
-            <img v-if="!activeClass" :src="require('./../../assets/img/image/wxz.svg')" id="checkbox" @click="getItem()"></img>
-            <img v-else :src="require('./../../assets/img/image/xz.svg')" id="checkbox" @click="getItem()"></img>
-            <span class="agree-text"> 我同意 <span @click="agreeClick('user')">《用户注册协议》</span> <span @click="agreeClick('privacy')">《用户隐私保护政策》</span> <span @click="agreeClick('information')">《个人身份信息使用授权书》</span></span>
+      <van-form validate-first @failed="onFailed">
+        <van-field v-model="name" type="tel" placeholder="请输入申请人真实姓名" label="姓名" :rules="[{ required: true }]" />
+        <van-field v-model="tel" type="tel" placeholder="请输入申请人真实身份证号" label="身份证号" :rules="[{ required: true}]" />
+        <van-field v-model="tel" type="tel" placeholder="请输入申请人手机号" maxlength="11" label="手机号" :rules="[{ required: true }]" />
+        <van-field v-model="sms" center clearable label="短信验证码" maxlength="6" placeholder="请输入短信验证码" :rules="[{ required: true ,max:4,}]">
+          <template #button>
+            <verification></verification>
+          </template>
+        </van-field>
+        <div class="note">个人信息将影响审核及收入提现，请确保信息真实有效</div>
+        <div class="footer_view">
+          <div class="protocol">
+            <div class="agree">
+              <img v-if="!activeClass" :src="require('./../../assets/img/image/wxz.svg')" id="checkbox" @click="getItem()"></img>
+              <img v-else :src="require('./../../assets/img/image/xz.svg')" id="checkbox" @click="getItem()"></img>
+              <span class="agree-text"> 我同意 <span @click="agreeClick('user')">《用户注册协议》</span> <span @click="agreeClick('privacy')">《用户隐私保护政策》</span> <span @click="agreeClick('information')">《个人身份信息使用授权书》</span></span>
+            </div>
+            <div class="btn">
+              <van-button color="#ffa347" round block type="info" native-type="submit">
+                提交
+              </van-button>
+            </div>
           </div>
-          <div class="btn">确认申请</div>
         </div>
-      </div>
+      </van-form>
+
     </div>
   </div>
 </template>
@@ -31,6 +38,7 @@ export default {
   name: 'applyforother',
   data() {
     return {
+      name: '',
       activeClass: false,
       checked: true,
       text: '',
@@ -43,6 +51,9 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    onFailed(errorInfo) {
+      console.log('failed', errorInfo)
+    },
     agreeClick(types) {
       console.log(types)
       if (types == 'user') {
@@ -107,7 +118,6 @@ export default {
             height: 16px;
             margin-right: 10px;
             background-repeat: no-repeat;
-            line-height: 12px;
             line-height: 16px;
             top: 3px;
             left: 4px;
@@ -128,8 +138,8 @@ export default {
           line-height: 34px;
           margin: 0 auto;
           font-size: 16px;
-          background: linear-gradient(90deg, #f98400, #ffa347);
-          border-radius: 20px;
+          // background: linear-gradient(90deg, #f98400, #ffa347);
+          // border-radius: 20px;
           text-align: center;
           color: #fff;
           margin-top: 40px;
