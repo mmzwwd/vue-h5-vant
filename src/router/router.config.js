@@ -167,6 +167,12 @@ export const constantRouterMap = [
       title: "联系推荐人"
     }
   },
-
+  {
+    path: "/team",
+    component: () => import("@/views/about/team/team.vue"),
+    meta: {
+      title: "我的团队"
+    }
+  },
 
 ]
