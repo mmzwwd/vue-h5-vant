@@ -39,13 +39,38 @@
         </div>
       </div>
       <div class="title">直推理事及其团队业绩</div>
-      <div class="wrap_view">
+      <!-- <div class="wrap_view">
         <van-empty description="您还没有邀请任何理事,">
           <div class="wrap_div">赶快组建属于您自己的团队吧</div>
           <van-button round type="info" class="bottom-button">
             去邀请
           </van-button>
         </van-empty>
+      </div> -->
+      <div class="content">
+        <div class="line">
+          <div class="name-box">
+            <img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLWj05bgtKHicEvGgTBhVwlkcQ7BUgReYWQGhQRrM5iaME8eWnGACDo58wtL4vbmpE0eGNNNYpMp24A/132" alt="" class="icon">
+            <span class="name">乌托邦（**斌)</span>
+          </div>
+          <div class="contact-icon tag" @click="dialog()">
+            <img src="https://static.rong360.com/gl/uploads/allimg/181017/211_1653087492.png" alt="">
+          </div>
+          <div class="contact-icon iphone">
+            <a :href="'tel:' + tel">
+              <img src="https://static.rong360.com/upload/png/68/b6/68b65cc3474e1d79d4dbd0f769f4d8ab.png" alt="">
+            </a>
+          </div>
+        </div>
+        <div class="content-div" v-for="(item,index) in listapse" :key="index">
+          <div class="time">加入时间：{{item.title}}</div>
+          <div class="content-list" v-show='openShow' v-html="item.content">
+          </div>
+          <unfoldandfoldu :colour="'#f78400'" :showText="'团队业绩'" :hideText="'团队业绩'" :openShow="openShow" @toFather="collapse"></unfoldandfoldu>
+        </div>
+      </div>
+      <div class="tail">
+        -------- 已经到底了 ------
       </div>
     </div>
   </div>
@@ -54,13 +79,22 @@
 <script>
 import Vue from 'vue'
 import { Dialog } from 'vant'
+import unfoldandfoldu from '@/components/unfoldAndFoldu'
 export default {
   name: 'team',
   data() {
     return {
+      openShow: false,
       centreShow: true,
       tel: '',
       value: '',
+      listapse: [
+        {
+          title: '2020-09-09',
+          content:
+            '【待查询】目前平台自动结算的银行，不用查询进度，达到结算规则后3个工作日左右可回来查看返佣。 <br>  <br>其余银行一般达到结算规则后3个工作日左右，客户或者合伙人需要到平台上进行进度查询，各家银行审核进度不同，状态更新也有延迟；【待查询】目前平台自动结算的银行，不用查询进度，达到结算规则后3个工作日左右可回来查看返佣。【待查询】目前平台自动结算的银行，不用查询进度，达到结算规则后3个工作日左右可回来查看返佣。 <br>  <br>其余银行一般达到结算规则后3个工作日左右，客户或者合伙人需要到平台上进行进度查询，各家银行审核进度不同，状态更新也有延迟；【待查询】目前平台自动结算的银行，不用查询进度，达到结算规则后3个工作日左右可回来查看返佣。'
+        }
+      ],
       list: [
         {
           name: '直推理事数(人)',
@@ -85,10 +119,14 @@ export default {
       ]
     }
   },
-  components: {},
+  components: { unfoldandfoldu },
   created() {},
   mounted() {},
   methods: {
+    collapse(ind) {
+      this.openShow = ind
+      console.log(ind)
+    },
     focusClick() {
       this.centreShow = false
     },
@@ -260,6 +298,43 @@ export default {
       color: #969799;
       font-size: 14px;
     }
+  }
+  .content-div {
+    padding: 8px 20px;
+    margin: 0 auto;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background: #fff;
+    .time {
+      font-size: 15px;
+      line-height: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .content-list {
+      font-size: 12px;
+      line-height: 20px;
+      color: #999;
+    }
+    .hide-over {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      max-height: 40px;
+      line-height: 20px;
+    }
+  }
+  .tail {
+    font-size: 10px;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #c8c9cc;
+    margin-top: 10px;
+    margin-bottom: 100px;
   }
 }
 </style>
