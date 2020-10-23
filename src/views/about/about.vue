@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <van-cell title="路由跳转" is-link to="index" />
-    <van-cell title="路由跳转" is-link to="index" />
-    <van-cell title="路由跳转" is-link to="index" />
+    <van-cell title="推广海报" is-link to="extend" />
+    <van-cell title="我的客户" is-link to="customer" />
     <van-cell title="我的团队" is-link to="team" />
     <van-cell title="联系推荐人" is-link to="contacts" />
     <van-cell title="常见问题" is-link to="matter" />

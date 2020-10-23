@@ -174,5 +174,28 @@ export const constantRouterMap = [
       title: "我的团队"
     }
   },
+  {
+    path: "/customer",
+    component: () => import("@/views/about/customer/customer.vue"),
+    meta: {
+      title: "我的客户"
+    }
+  },
+  {
+    path: "/extend",
+    component: () => import("@/views/about/extend/extend.vue"),
+    meta: {
+      title: "推广海报"
+    }
+  },
+  {
+    path: "/singleposter",
+    component: () => import("@/views/about/extend/singleposter.vue"),
+    meta: {
+      title: "海报详情"
+    }
+  },
+
+
 
 ]

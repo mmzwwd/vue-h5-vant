@@ -15,6 +15,7 @@ export default {
     openShow: true,
     showText: String,
     hideText: String,
+    ind: Number,
     colour: String
   },
   data() {
@@ -41,7 +42,7 @@ export default {
       //   this.list[inde].openShow = !this.list[inde].openShow
       this.$set(this.show, 'openShow', !this.show.openShow)
       console.log(this.show.openShow)
-      this.$emit('toFather', this.show.openShow)
+      this.$emit('toFather', this.show.openShow, this.ind)
     }
   }
 }
