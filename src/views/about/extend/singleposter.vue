@@ -39,9 +39,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .singleposter {
-  width: 80%;
-  padding: 10px;
+  width: 100%;
+  padding: 10px 0;
   margin: 0 auto;
+
   .propag {
     // margin: 0 auto;
   }
