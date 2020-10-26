@@ -2,7 +2,7 @@
   <div class='extend'>
     <div class="banner">
       <div class="banner-div">
-        <div class="banner-box" v-for="(item, index) in bannerList" :style="{ backgroundImage:'url('+ item.image+')'}">
+        <div class="banner-box" v-for="(item, index) in bannerList" :style="{ backgroundImage:'url('+ item.image+')'}" @click="bannerClick()">
           <p class="p1">{{item.title}}</p>
           <p class="p2">{{item.subtitle}}</p>
         </div>
@@ -10,7 +10,7 @@
     </div>
     <div class="title">单银行海报</div>
     <div class="posterList">
-      <div class="list-contain" v-for="posterItem in posterList ">
+      <div class="list-contain" v-for="posterItem in posterList " @click="posterClick()">
         <p class="list-img"><span><img src="https://m.rong360.com/static/img/credit/bank/3.png" alt=""></span></p>
         <p class="list-name">{{posterItem.name}}</p>
         <div class="num">
@@ -73,7 +73,14 @@ export default {
   components: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    bannerClick() {
+      this.$router.push('/recruitposter')
+    },
+    posterClick() {
+      this.$router.push('/singleposter')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -127,7 +134,7 @@ export default {
     flex-wrap: wrap;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     .list-contain {
       width: 30%;
       height: 100px;
@@ -140,10 +147,12 @@ export default {
         border: 1px solid #dcdbe9;
         border-radius: 50%;
         margin: 0 auto;
+        margin-top: 10px;
         span {
           width: 80%;
           text-align: center;
           margin: 8px 0 0 4px;
+          line-height: 45px;
         }
         img {
           width: 80%;

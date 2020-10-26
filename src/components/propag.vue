@@ -39,14 +39,14 @@ export default {
     position: absolute;
     bottom: 25px;
     right: 15px;
-    width: 84x;
+    width: 87.5555px;
     height: 88px;
     .poster-div-t {
       padding: 4px;
       background: #fff;
     }
     .poster-div-img {
-      width: 76px;
+      width: 100%;
       height: 76px;
       display: block;
     }

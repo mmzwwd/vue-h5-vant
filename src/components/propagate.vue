@@ -1,32 +1,46 @@
 <template>
   <div class='singleposter'>
-    <div class="poster-lists">
-      <img class="poster-img" :src="require('../../../assets/images/sing.png')" alt="">
-      <div class="poster-div">
-        <img class="poster-div-img" :src="require('../../../assets/images/eem.png')" alt="">
-        <div class="poster-ts">扫一扫 0元创业</div>
-        <!-- <div class="poster-ts">扫描二维码 申请信用卡</div> -->
-      </div>
-      <div class="poster-news">
-        <div class="news-div">
-          <img class="news-img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHuy1OOTMw7564rZQkcK7OMWhpqiaMF0qwY2qwOPEP12asgWSES4cZkEmoXYhHdjZNH7ucNwUyJjA/132" alt="">
-          <div class="news-span">
-            <div class="news-span2">圥忈</div>
-            <div class="news-span3">电话:18810563078</div>
+    <van-swipe class="my-swipe" :loop="false" :width="288" :show-indicators="false" :swipeTo="3">
+      <van-swipe-item v-for="(item,index) in propaglists" :key="index">
+        <div class="poster-lists">
+          <img class="poster-img" :src="require('./../assets/images/sing.png')" alt="">
+          <div class="poster-div">
+            <img class="poster-div-img" :src="require('./../assets/images/eem.png')" alt="">
+            <div class="poster-ts">扫一扫 0元创业</div>
+            <!-- <div class="poster-ts">扫描二维码 申请信用卡</div> -->
+          </div>
+          <div class="poster-news">
+            <div class="news-div">
+              <img class="news-img" :src="item" alt="">
+              <div class="news-span">
+                <div class="news-span2">圥忈</div>
+                <div class="news-span3">电话:18810563078</div>
+              </div>
+            </div>
+            <div class="service-title">我是您的专属客服,您有任何关于信用卡</div>
+            <div class="service-title">申请的相关问题都可以随时向我咨询</div>
           </div>
         </div>
-        <div class="service-title">我是您的专属客服,您有任何关于信用卡</div>
-        <div class="service-title">申请的相关问题都可以随时向我咨询</div>
-      </div>
-    </div>
+      </van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 
 <script>
 export default {
   name: 'singleposter',
+  props: {
+    propaglist: Array
+  },
   data() {
-    return {}
+    return {
+      propaglists: this.propaglist
+    }
+  },
+  watch: {
+    propaglist(val) {
+      this.propaglists = val
+    }
   },
   components: {},
   created() {},
@@ -34,12 +48,19 @@ export default {
   methods: {}
 }
 </script>
+<style>
+.my-swipe .van-swipe-item {
+  width: 300px;
+}
+</style>
 <style lang="scss"  scoped>
 .singleposter {
-  width: 76%;
+  width: 100%;
   margin: 0 auto;
   padding-top: 10px;
   .poster-lists {
+    width: 93%;
+    margin: 0 auto;
     position: relative;
   }
   .poster-img {

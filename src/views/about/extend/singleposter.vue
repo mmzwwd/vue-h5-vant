@@ -15,7 +15,7 @@
     </div>
     <div class="protocol">
       <span>我已了解</span>
-      <span class="light">《理事推广协议》</span>
+      <span class="light" @click="treatyClick()">《理事推广协议》</span>
     </div>
   </div>
 </template>
@@ -30,7 +30,11 @@ export default {
   components: { propag },
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    treatyClick() {
+      this.$router.push('/authorization')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

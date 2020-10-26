@@ -195,6 +195,13 @@ export const constantRouterMap = [
       title: "海报详情"
     }
   },
+  {
+    path: "/recruitposter",
+    component: () => import("@/views/about/extend/recruitposter.vue"),
+    meta: {
+      title: "海报详情"
+    }
+  },
 
 
 

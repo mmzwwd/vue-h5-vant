@@ -77,14 +77,14 @@ export default {
 }
 </script>
 <style>
-.my-swipe .van-swipe-item {
+.index-container .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
   line-height: 150px;
   text-align: center;
   /* background-color: #39a9ed; */
 }
-.my-swipe .van-swipe-item img {
+.index-container.my-swipe .van-swipe-item img {
   width: 96%;
   height: 100%;
   margin: 0 auto;
