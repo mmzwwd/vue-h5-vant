@@ -141,7 +141,7 @@ export default {
   }
   .vant-table {
     .table {
-      border-radius: 0.185185rem;
+      // border-radius: 0.185185rem;
       .th {
         height: 40px;
         line-height: 40px;

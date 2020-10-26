@@ -202,6 +202,50 @@ export const constantRouterMap = [
       title: "海报详情"
     }
   },
+  {
+    path: "/order",
+    component: () => import("@/views/about/order/order.vue"),
+    meta: {
+      title: "申卡订单"
+    }
+  },
+  {
+    path: "/details",
+    component: () => import("@/views/about/order/details.vue"),
+    meta: {
+      title: "订单详情"
+    }
+  },
+  {
+    path: "/query",
+    component: () => import("@/views/about/order/query.vue"),
+    meta: {
+      title: "进度查询"
+    }
+  },
+  {
+    path: "/levelIndex",
+    component: () => import("@/views/about/levelIndex/levelIndex.vue"),
+    meta: {
+      title: "进度查询"
+    }
+  },
+  {
+    path: "/notice",
+    component: () => import("@/views/about/notice/notice.vue"),
+    meta: {
+      title: "通知"
+    }
+  },
+  {
+    path: "/income",
+    component: () => import("@/views/about/income/income.vue"),
+    meta: {
+      title: "收支明细"
+    }
+  },
+
+
 
 
 

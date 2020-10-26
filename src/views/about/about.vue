@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-cell title="路由跳转" is-link to="index" />
+    <van-cell title="申卡订单" is-link to="order" />
     <van-cell title="推广海报" is-link to="extend" />
     <van-cell title="我的客户" is-link to="customer" />
     <van-cell title="我的团队" is-link to="team" />
