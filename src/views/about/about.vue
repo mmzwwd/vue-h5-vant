@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <van-cell title="申卡订单" is-link to="order" />
+    <!-- <van-cell title="申卡订单" is-link to="order" /> -->
+    <van-cell title="单元格" value="内容" size="large" />
     <van-cell title="推广海报" is-link to="extend" />
     <van-cell title="我的客户" is-link to="customer" />
     <van-cell title="我的团队" is-link to="team" />
     <van-cell title="联系推荐人" is-link to="contacts" />
     <van-cell title="常见问题" is-link to="matter" />
+    <van-cell title="联系客服" is-link to="service" />
     <van-cell title="设置" is-link to="setting" />
   </div>
 </template>

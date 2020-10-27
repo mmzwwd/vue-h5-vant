@@ -244,7 +244,13 @@ export const constantRouterMap = [
       title: "收支明细"
     }
   },
-
+  {
+    path: "/service",
+    component: () => import("@/views/about/service/service.vue"),
+    meta: {
+      title: "联系客服"
+    }
+  },
 
 
 

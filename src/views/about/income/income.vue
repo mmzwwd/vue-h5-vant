@@ -25,10 +25,13 @@
             <div>**林 | 188****908</div>
             <div> 09.16 15：29</div>
           </div>
-          <div class="contentRight">
+          <!-- <div class="contentRight">
             <div class="contentRight1">+10.00</div>
-            <!-- <div class="contentRight2">提现成功</div> -->
-            <!-- <div class="contentRight3">《</div> -->
+            <div class="contentRight2">提现成功</div>
+            <div class="contentRight3">《</div>
+          </div> -->
+          <div class="contentRight">
+            <div class="contentRight1 contentRight4">+10.00</div>
           </div>
         </div>
       </div>
@@ -197,6 +200,9 @@ export default {
             position: absolute;
             top: 14px;
             right: 6px;
+          }
+          .contentRight4 {
+            margin-top: 8px;
           }
         }
       }
