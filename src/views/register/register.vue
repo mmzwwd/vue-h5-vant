@@ -16,7 +16,7 @@
         <div class="agree">
           <img v-if="!activeClass" :src="require('./../../assets/img/image/wxz.svg')" id="checkbox" @click="getItem()"></img>
           <img v-else :src="require('./../../assets/img/image/xz.svg')" id="checkbox" @click="getItem()"></img>
-          <span class="agree-text"> 我同意 <span>《用户注册协议》</span> <span>《用户隐私保护政策》</span> <span>《个人身份信息使用授权书》</span></span>
+          <span class="agree-text"> 我同意 <span @click="agreeClick('user')">《用户注册协议》</span> <span @click="agreeClick('privacy')">《用户隐私保护政策》</span> <span @click="agreeClick('information')">《个人身份信息使用授权书》</span></span>
         </div>
         <div class="login-button">
           <van-button round block type="info" color="#ffa347" native-type="submit">
@@ -45,6 +45,16 @@ export default {
   methods: {
     getItem() {
       this.activeClass = !this.activeClass
+    },
+    agreeClick(types) {
+      console.log(types)
+      if (types == 'user') {
+        this.$router.push('/registration')
+      } else if (types == 'privacy') {
+        this.$router.push('/agreement')
+      } else if (types == 'information') {
+        this.$router.push('/information')
+      }
     },
     getCode() {
       const TIME_COUNT = 60

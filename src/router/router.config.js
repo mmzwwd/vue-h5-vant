@@ -258,6 +258,13 @@ export const constantRouterMap = [
       title: "收入记录"
     }
   },
+  {
+    path: "/cashOut",
+    component: () => import("@/views/about/income/cashOut.vue"),
+    meta: {
+      title: "提现结果"
+    }
+  },
 
 
 

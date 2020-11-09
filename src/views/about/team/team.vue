@@ -3,14 +3,14 @@
     <div class="head">
       <!-- 粘性布局 -->
       <van-sticky>
-        <van-search v-model="value" show-action placeholder="请输入搜索关键词" :disabled='centreShow' @clear="clearClick" @focus='focusClick' @search="onSearch">
+         <van-search v-model="value" show-action placeholder="请输入搜索关键词" @focus="change(false)" @clear="change(true)" @search="onSearch">
           <template #action>
-            <div @click="onSearch" v-if="!centreShow">搜索</div>
+            <div @click="onSearch">搜索</div>
           </template>
         </van-search>
       </van-sticky>
     </div>
-    <div class="centre" v-if="centreShow">
+    <div class="centre" v-if="focusShow">
       <div class="title">我的团队业绩</div>
       <div class="team-lists">
         <div class="list" v-for="(item,index) in list" :key="index">
@@ -84,6 +84,7 @@ export default {
   name: 'team',
   data() {
     return {
+      focusShow:true,
       openShow: false,
       centreShow: true,
       tel: '',
@@ -123,15 +124,15 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    change(val){
+       this.focusShow=val
+       if(val==true){
+         document.getElementsByTagName("input")[0].blur()
+       }
+    },
     collapse(ind) {
       this.openShow = ind
       console.log(ind)
-    },
-    focusClick() {
-      this.centreShow = false
-    },
-    clearClick() {
-      this.centreShow = true
     },
     dialog() {
       Dialog.confirm({

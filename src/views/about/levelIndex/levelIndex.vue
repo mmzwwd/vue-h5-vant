@@ -3,7 +3,7 @@
     <div class="header">
       <div class="text">当前等级</div>
       <div class="level">
-        <van-steps :active="active" active-icon="success" active-color="#ececf3">
+        <van-steps :active="active" active-icon="fire" active-color="#fff">
           <van-step> <span class="levelSpan">理事</span> </van-step>
           <van-step>理事X1</van-step>
         </van-steps>
@@ -34,10 +34,13 @@
     </div>
     <van-sticky>
       <div class="sticky">
-        <div class="header-tab"><span>等级规则</span></div>
+        <div class="header-tab">
+           <div :class='["tab", {"tabactive":textShow}]' @click="tabClick(true)">等级规则</div>
+           <div :class='["tab", {"tabactive":!textShow}]' @click="tabClick(false)">团队奖励说明</div>
+        </div>
       </div>
     </van-sticky>
-    <div class="tab-page">
+    <div class="tab-page" v-show="textShow">
       <div class="content">
         <div class="title">一、升级规则</div>
         <div class="conten">平台将根据您的<span>每月总业绩和您的直推理事等级</span>，按照下表的计算方法实时统计并确定您的等级和奖励系数。</div>
@@ -73,19 +76,30 @@
       </div>
       <div class="content">每月业绩均从0开始计算，不会与上月累加。</div>
     </div>
+    <div class="contents" v-show="!textShow">
+      <div class="title"> 一、团队奖计算方法</div>
+      <div class="with-bg">
+        <p>团队奖 = 个人业绩 * 奖励系数 + 团队业绩 * 奖励系数差</p>
+          其中：奖励系数差 = 本人与直推理事的奖励系数之差
+      </div>
+      <div class="content">
+        当理事的团队成员级别高于或等于上级理事时，您拿不到该理事团队奖励。
+      </div>
+      <div class="title">二、平级奖</div>
+      <div class="content">X7级理事专享福利：X7级理事可得团队中距您最近的下级X7理事团队业绩的0.8%作为平级奖，如有多个距您最近的x7下级，则可获得多个平级奖。
+        <span class="light">平级奖发放时间与团队奖发放时间一致</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { Step, Steps } from 'vant'
-
-Vue.use(Step)
-Vue.use(Steps)
 export default {
   name: 'levelIndex',
   data() {
     return {
+      textShow: true,
       active: 1,
       option: {
         column: [
@@ -145,15 +159,25 @@ export default {
   components: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+     tabClick(type) {
+      this.textShow = type
+    },
+  }
 }
 </script>
 <style>
 .levelIndex .van-steps {
   background-color: transparent;
 }
-.levelIndex .van-sticky {
+.levelIndex .van-sticky--fixed {
   background: #fff;
+}
+.levelIndex .van-step--horizontal .van-step__circle-container{
+  background-color:transparent;
+}
+.levelIndex  .van-step--finish{
+  color:#fff;
 }
 </style>
 <style  lang='scss' scoped>
@@ -161,7 +185,7 @@ export default {
   width: 100%;
   .header {
     width: 100%;
-    height: 240px;
+    height:100px;
     background-image: url(https://static.rong360.com/upload/png/de/d6/ded68a39ea788c8923028a3399825f4b.png);
     padding: 20px 0 30px;
     .text {
@@ -173,19 +197,21 @@ export default {
     }
     .level {
       padding: 0 20px;
-      width: 200px;
+      width: 220px;
       box-sizing: border-box;
       margin-bottom: 16px;
+      line-height: 20px;
       font-size: 12px;
       float: right;
       .levelSpan {
         font-size: 16px;
+        line-height: 20px;
         color: #fff;
       }
     }
   }
   .board {
-    width: 80%;
+    width: 84%;
     margin: 0 auto;
     margin-top: -30px;
     padding: 20px 14px;
@@ -259,26 +285,42 @@ export default {
   }
   .sticky {
     width: 100%;
-    background: #fff;
-    .header-tab {
-      background: #fff;
+     .header-tab {
       width: 88%;
       margin: 0 auto;
       text-align: left;
       margin-top: 10px;
       font-size: 20px;
-      font-weight: 700;
       line-height: 30px;
-
-      span {
-        padding-bottom: 3px;
-        border-bottom: 4px solid #f98400;
+      height: 34px;
+      overflow: hidden;
+      .tab {
+        font-size: 16px;
+        margin-right: 15px;
+        line-height: 28px;
+        float: left;
+      }
+      .tabactive {
+        font-size: 20px;
+        color: #3b3453;
+        font-weight: 700;
+        position: relative;
+      }
+      .tabactive:after {
+        content: '';
+        position: absolute;
+        bottom:-5px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        background-image: linear-gradient(90deg, #f98400, #ffa347);
       }
     }
   }
   .tab-page {
     width: 88%;
-    padding: 15px 0;
+    padding: 0 0 15px 0;
     margin: 0 auto;
     margin-bottom: 20px;
 
@@ -344,6 +386,43 @@ export default {
   }
   .table-td {
     border: solid #d6d6e0 1px;
+  }
+  .contents{
+    width: 88%;
+    padding: 0 0 15px 0;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    .title{
+      line-height: 22px;
+      font-size:16px;
+      color: #3b3453;
+      padding-bottom: 14px;
+      font-weight: 700;
+      padding-top:20px;
+    }
+     .with-bg {
+      line-height: 20px;
+      padding: 14px 10px;
+      font-size: 14px;
+      background-color: #ececf3;
+      box-sizing: border-box;
+      margin: 10px 0;
+      p{
+        font-weight: 700;
+        line-height:20px;
+        content: "viewport-units-buggyfill; line-height: 20px";
+      }
+    }
+    .content{
+      line-height: 20px;
+      font-size: 14px;
+      color: #3b3453;
+      padding:0;
+      margin-bottom:0;
+      .light{
+        font-weight: 700;
+      }
+    }
   }
 }
 </style>

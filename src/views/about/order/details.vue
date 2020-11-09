@@ -10,7 +10,7 @@
     </div>
     <div class="content">
       <van-steps direction="vertical" :active="0" :active-color="'#605f6b'" :inactive-color="'#909399'">
-        <van-step v-for="item in detailsList">
+        <van-step v-for="item in detailsList" :key="item.title">
           <h5>{{item.title}} <span v-if="item.title=='终审通过'" class="calculate">结算奖励</span></h5>
           <h6>{{item.content}} </h6>
         </van-step>
@@ -28,11 +28,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { Step, Steps } from 'vant'
-
-Vue.use(Step)
-Vue.use(Steps)
 export default {
   name: 'details',
   data() {

@@ -6,8 +6,8 @@
       <div class="warpper-bar">
         个人中心
         <span class="bar-span">
-          <van-icon class="iconSetting" name="setting-o" />
-          <van-icon class="iconComment" name="comment-o" />
+          <van-icon class="iconSetting" name="setting-o" @click="settingClick" />
+          <van-icon class="iconComment" name="comment-o" dot @click="noticeClick" />
         </span>
       </div>
     </div>
@@ -27,7 +27,7 @@
          <div class="box-left-div2">(总收入100.00元)</div>
         </div>
         <div class="warpper-box-right">
-          <van-button class="box-right-button" color="#dcdcdc" type="primary" round  >提现</van-button>
+          <van-button class="box-right-button" color="#dcdcdc" type="primary" round  @click="cashOutClick">提现</van-button>
           <van-button class="box-right-button" color="#fba979" round  plain @click="bannerClick">明细</van-button>
         </div>
     </div>
@@ -40,16 +40,20 @@
       <div class="frames"> 
         <van-cell is-link  v-for="(item,index) in routList"  :key='index' :border="false" :to="item.to">
           <template #title>
-           <span class="frames-span"><img class="frames-img" :src="require('../../assets/img/image/tg.png')" alt=""> 
-          {{item.name}}</span>
+           <span class="frames-span">
+              <!-- <img class="frames-img" :src="require('../../assets/img/image/tg.png')" alt="">  -->
+            <van-icon size="0.5rem" :name="item.icon" style="vertical-align: middle;" />
+            {{item.name}}</span>
           </template>
         </van-cell>
         
         <van-divider :style="{width:'94%'}" />
          <van-cell is-link  v-for="(item,index) in routList1"  :key='index' :border="false" :to="item.to">
           <template #title>
-           <span class="frames-span"><img class="frames-img" :src="require('../../assets/img/image/tg.png')" alt=""> 
-          {{item.name}}</span>
+           <span class="frames-span">
+              <!-- <img class="frames-img" :src="require('../../assets/img/image/tg.png')" alt="">  -->
+              <van-icon  size="0.5rem" style="vertical-align: middle;" :name="item.icon" />
+            {{item.name}}</span>
           </template>
         </van-cell>
       </div>
@@ -70,38 +74,46 @@ export default {
       routList:[
         { 
           name:'申卡订单',
-          to:''
-          //order
+          to:'',
+          //order,
+          icon:'balance-list-o'
         },
         { 
           name:'推广海报',
-          to:'extend'
+          to:'extend',
+          icon:'orders-o',
         },
         { 
           name:'我的客户',
-          to:'customer'
+          to:'customer',
+          icon:'manager-o'
         },
         { 
           name:'我的团队',
-          to:'team'
+          to:'team',
+          icon:'friends-o'
         },
       ],
       routList1:[
         { 
           name:'联系推荐人',
-          to:'contacts'
+          to:'contacts',
+          icon:'newspaper-o'
         },
         { 
           name:'常见问题',
-          to:'matter'
+          to:'matter',
+          icon:'question-o'
         },
         { 
           name:'在线客服',
-          to:'service'
+          to:'service',
+          icon:'phone-circle-o',
         },
         { 
           name:'设置',
-          to:'setting'
+          to:'setting',
+          icon:'setting-o',
         },
       ],
       isactive:true,
@@ -111,8 +123,18 @@ export default {
     bgHide(){
       this.isactive=!this.isactive
     },
+    settingClick(){
+    this.$router.push('/setting')
+    },
+    noticeClick() {
+      this.$router.push('/notice')
+    },
     levelIndex() {
       this.$router.push('/levelIndex')
+    },
+    cashOutClick(){
+      this.$router.push('/cashOut')
+
     },
     bannerClick() {
       this.$router.push('/income')
