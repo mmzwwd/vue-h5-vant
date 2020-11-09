@@ -27,7 +27,7 @@ export default {
           icon: 'home-o'
         },
         {
-          title: '关于我',
+          title: '个人中心',
           to: {
             name: 'About'
           },

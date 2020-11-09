@@ -1,12 +1,13 @@
 <template>
   <div class='customer'>
-    <van-search v-model="value" show-action placeholder="请输入搜索关键词" @search="onSearch">
+    <van-search v-model="value" show-action placeholder="请输入搜索关键词" @focus="change(false)" @clear="change(true)" @search="onSearch">
       <template #action>
         <div @click="onSearch">搜索</div>
       </template>
     </van-search>
+    <div v-if="focusShow">
     <div class="cardInfo">
-      <div class="item" v-for="item in list">
+      <div class="item" v-for="(item,index) in list"  :key="index">
         <div class="name">{{item.name}}</div>
         <div class="number">{{item.number}}</div>
       </div>
@@ -24,7 +25,7 @@
         </van-button>
       </van-empty>
     </div> -->
-    <div class="custom-list" v-for="(customList,index) in customListe">
+    <div class="custom-list" v-for="(customList,index) in customListe" :key="index">
       <div class="item">
         <div class="item-lis">
           <img class="item-img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHuy1OOTMw7564rZQkcK7OMWhpqiaMF0qwY2qwOPEP12asgWSES4cZkEmoXYhHdjZNH7ucNwUyJjA/132" alt="">
@@ -35,19 +36,22 @@
       </div>
       <div class="bank">
         <div class="bank-title">通过我推荐申请的银行</div>
-        <div class="bank-list" v-for="(item,inde) in customList.bankList" v-if="inde==0 || customList.openShow">
-          <div class="bank-lis">
-            <img class="bank-img" src="https://m.rong360.com/static/img/credit/bank/3.png" alt="">
-            <div class="bank-name">{{item.name}}</div>
-            <div class="bank-type">待查询</div>
+        <div class="bank-list" v-for="(item,inde) in customList.bankList" :key="inde">
+          <div  v-if="inde==0 || customList.openShow">
+            <div class="bank-lis">
+              <img class="bank-img" src="https://m.rong360.com/static/img/credit/bank/3.png" alt="">
+              <div class="bank-name">{{item.name}}</div>
+              <div class="bank-type">待查询</div>
+            </div>
+            <div class="bank-invalid">28天后失效</div>
           </div>
-          <div class="bank-invalid">28天后失效</div>
         </div>
       </div>
       <div class="item-show">
         <unfoldandfoldu :colour="'#f78400'" :showText="'展开'" :hideText="'收起'" :openShow="customList.openShow" :ind="index" @toFather="collapse"></unfoldandfoldu>
       </div>
     </div>
+     </div>
   </div>
 </template>
 
@@ -89,6 +93,7 @@ export default {
           ]
         }
       ],
+      focusShow:true,
       textShow: true,
       value: '',
       list: [
@@ -101,6 +106,12 @@ export default {
   created() {},
   mounted() {},
   methods: {
+     change(val){
+       this.focusShow=val
+       if(val==true){
+         document.getElementsByTagName("input")[0].blur()
+       }
+    },
     collapse(type, ind) {
       this.openShow = type
       this.$set(this.customListe[ind], 'openShow', type)

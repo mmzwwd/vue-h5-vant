@@ -13,7 +13,7 @@
     <div class="centre" v-if="centreShow">
       <div class="title">我的团队业绩</div>
       <div class="team-lists">
-        <div class="list" v-for="item in list">
+        <div class="list" v-for="(item,index) in list" :key="index">
           <div class="list-div1">{{item.name}}</div>
           <div class="list-div2">{{item.agg}}</div>
           <div class="list-div3">
@@ -26,7 +26,7 @@
         <div class="line">
           <div class="name-box">
             <img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLWj05bgtKHicEvGgTBhVwlkcQ7BUgReYWQGhQRrM5iaME8eWnGACDo58wtL4vbmpE0eGNNNYpMp24A/132" alt="" class="icon">
-            <span class="name">乌托邦（**斌)</span>
+            <span class="name"> 乌托邦（**斌)</span>
           </div>
           <div class="contact-icon tag" @click="dialog()">
             <img src="https://static.rong360.com/gl/uploads/allimg/181017/211_1653087492.png" alt="">
@@ -51,7 +51,7 @@
         <div class="line">
           <div class="name-box">
             <img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLWj05bgtKHicEvGgTBhVwlkcQ7BUgReYWQGhQRrM5iaME8eWnGACDo58wtL4vbmpE0eGNNNYpMp24A/132" alt="" class="icon">
-            <span class="name">乌托邦（**斌)</span>
+            <span class="name"> 乌托邦（**斌)</span>
           </div>
           <div class="contact-icon tag" @click="dialog()">
             <img src="https://static.rong360.com/gl/uploads/allimg/181017/211_1653087492.png" alt="">

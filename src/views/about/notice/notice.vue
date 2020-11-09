@@ -126,12 +126,12 @@ export default {
       border: #3880f9 solid;
       border-width: 1px 1px 0 0;
     }
-    .show {
+    .hide  {
       transform: rotate(135deg);
       margin-bottom: 3px;
       margin-left: 4px;
     }
-    .hide {
+    .show {
       transform: rotate(-45deg);
       margin-bottom: -1px;
       margin-left: 4px;

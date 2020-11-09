@@ -11,6 +11,7 @@ export default {
 <style lang="scss">
 #app {
   height: 100%;
+  background-color: #f9f9fb;
 }
 * {
   margin: 0;

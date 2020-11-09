@@ -5,7 +5,7 @@
         <p>您好，我是小新，很高兴为您服务!</p>
       </div>
       <div class="main">
-        <div class="msg-item" v-for="serviceItem in serviceList">
+        <div class="msg-item" v-for="(serviceItem,index) in serviceList" :key="index">
           <div class="left" v-if="serviceItem.type=='left'">
             <div class="avater">
               <img :src="serviceItem.img" alt="">

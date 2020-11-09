@@ -2,10 +2,17 @@
 <template>
   <div class="index-container">
     <div class="warpper">
+      <div class="warpper-bar">
+        个人中心
+        <span class="bar-span">
+          <van-icon class="iconSetting" name="setting-o" />
+          <van-icon class="iconComment" name="comment-o" />
+        </span>
+      </div>
       <div class="warpper-box">
         <van-swipe class="my-swipe" style="height: 120px;" :autoplay="5000" indicator-color="white">
           <van-swipe-item v-for="(image, index) in images" :key="index">
-            <img :src="image" alt="">
+            <img class="my-swipe-img" :src="image" alt="">
           </van-swipe-item>
         </van-swipe>
       </div>
@@ -17,10 +24,10 @@
     </div>
     <div class="text">
       <div class="text-span">推荐银行</div>
-      <div class="text-span-one" @click="policy">奖励政策</div>
+      <div class="text-span-one" @click="policy">奖励政策<van-icon class="text-span-icon" name="arrow" /></div>
     </div>
     <div class="bank-list">
-      <div class="copartner" v-for="item in list" @click="cardListCliack(item.id)">
+      <div class="copartner" v-for="(item,index) in list" :key="index" @click="cardListCliack(item.id)">
         <div class="logo"><img style="width: 100%;" src="https://m.rong360.com/static/img/credit/bank/3.png" alt=""></div>
         <div class="name">{{item.name}}</div>
         <div class="tags"><span style="background: rgba(250,100,0,.08);margin: 0 auto;">终审T+2自动结算</span></div>
@@ -90,27 +97,60 @@ export default {
   margin: 0 auto;
   border-radius: 10px;
 }
+.my-swipe-img{
+  width: 96%;
+  border-radius: 10px;
+  height: 100%;
+}
 </style>
 <style lang="scss" scoped>
 .index-container {
   .warpper {
     width: 100%;
     height: 100px;
-    background-image: url(./../../assets/img/image/backg.png);
+    background-image: url(./../../assets/images/beij.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -6vw;
+    .warpper-bar{
+      width: 93%;
+      margin: 0 auto;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #303133;
+      position: relative;
+      .bar-span{
+      width: auto;
+      display: block;
+      position: absolute;
+      top:0;
+      right:0;
+      }
+      .iconSetting{
+        vertical-align: middle;
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      .iconComment{
+        vertical-align: middle;        
+        font-size: 20px;
+      }
+    }
     .warpper-box {
       width: 90%;
       margin: 0 auto;
       height: 120px;
-      padding-top: 20px;
+      padding-top:10px;
     }
   }
   .banner {
     width: 98%;
     height: 70px;
-    margin-top: 52px;
+    margin-top: 90px;
     overflow: hidden;
     .banner-div::-webkit-scrollbar {
       display: none;
@@ -142,10 +182,14 @@ export default {
       float: left;
     }
     .text-span-one {
-      color: #f78400;
+      color: #EFB178;
       font-size: 14px;
-      line-height: 30px;
+      line-height: 32px;
       float: right;
+      .text-span-icon{
+        vertical-align: middle;
+        font-size: 18px;
+      }
     }
   }
   .bank-list {
@@ -194,7 +238,7 @@ export default {
         overflow: hidden;
       }
       .red-btn {
-        background: #ff3737;
+        background: #FEC841;
         text-align: center;
         line-height: 24px;
         color: #fff;

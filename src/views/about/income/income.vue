@@ -5,7 +5,7 @@
         <div :class='["tab", {"active":textShow}]' @click="tabClick(true)">收入记录</div>
         <div :class='["tab", {"active":!textShow}]' @click="tabClick(false)">提现记录</div>
       </div>
-      <div class="search-btn">搜索</div>
+      <div class="search-btn" @click="bannerClick">搜索</div>
     </div>
     <div class="tab-view">
       <div :class='["tabview", {"active":tabviewShow}]' @click="tabviewClick(true)">推卡收入</div>
@@ -52,6 +52,9 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    bannerClick() {
+      this.$router.push('/search')
+    },
     tabviewClick(type) {
       this.$toast.loading({
         // message: '加载中...',

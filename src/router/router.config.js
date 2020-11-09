@@ -251,6 +251,13 @@ export const constantRouterMap = [
       title: "联系客服"
     }
   },
+  {
+    path: "/search",
+    component: () => import("@/views/about/income/search.vue"),
+    meta: {
+      title: "收入记录"
+    }
+  },
 
 
 

@@ -1,8 +1,12 @@
 <template>
   <div class='order'>
-    <van-search v-model="value" shape="round" background="#4fc08d" placeholder="请输入搜索关键词" />
-    <van-tabs v-model="active" :title-active-color="'#3b3453'" :title-inactive-color="'#3b3453'" :color="'#f78400'" @click='activeClick'>
-      <van-tab v-for="item in activeList" :title="item.title" :name="item.title">
+    <van-search v-model="value" shape="round" background="#fff" @focus="change(false)" @clear="change(true)" show-action placeholder="请输入搜索关键词">
+      <template #action>
+        <div @click="onSearch">搜索</div>
+      </template>
+    </van-search>
+    <van-tabs v-if="focusShow" v-model="active" :title-active-color="'#3b3453'" :title-inactive-color="'#3b3453'" :color="'#f78400'" @click='activeClick'>
+      <van-tab v-for="(item,index) in activeList" :key="index" :title="item.title" :name="item.title">
         <!-- <van-empty class="custom-image" :image="require('../../../assets/images/static.png')" description="暂无数据" /> -->
         <div class="orderlist">
           <div class="orderHead">
@@ -43,6 +47,7 @@ export default {
     return {
       value: '',
       active: '',
+      focusShow:true,
       activeList: [
         { title: '待查询' },
         { title: '待再查' },
@@ -58,6 +63,15 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    change(val){
+       this.focusShow=val
+       if(val==true){
+         document.getElementsByTagName("input")[0].blur()
+       }
+    },
+      onSearch(val) {
+      Toast(val);
+    },
     receiveClick() {
       this.$router.push('/contacts')
     },
