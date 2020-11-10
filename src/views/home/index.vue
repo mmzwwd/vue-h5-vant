@@ -40,7 +40,13 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
+import { logins} from '../../api/user';
+
+  export default {
+    computed: {
+      ...mapGetters(['userName'])
+    },
   data() {
     return {
       img: './../../assets/img/image/backg.png',
@@ -68,12 +74,21 @@ export default {
       ]
     }
   },
-
-  computed: {},
-
-  mounted() {},
+  mounted() {
+    this.isOpenId()
+  },
 
   methods: {
+    isOpenId(){
+      let Data = {
+        openId:'undefined'
+    };
+      logins(Data).then(res => {      
+         })
+     this.$store.commit('SET_USER_NAME', '真乖')
+      this.$store.dispatch('setIsOpen', '1')
+      console.log( this.$store.state)
+    },
     policy() {
       this.$router.push('/pricePolicy')
     },

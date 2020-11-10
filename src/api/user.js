@@ -1,14 +1,12 @@
 import api from './index'
 // axios
 import request from '@/utils/request'
+import { http } from './home'
 
 // 登录
-export function login(data) {
-  return request({
-    url: api.Login,
-    method: 'post',
-    data
-  })
+export function logins (data) {
+  return http('opt/findById', data ,'GET', true
+  )
 }
 
 // 用户信息 post 方法
@@ -17,7 +15,6 @@ export function getUserInfo(data) {
     url: api.UserInfo,
     method: 'post',
     data,
-    hideloading: true
   })
 }
 

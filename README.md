@@ -469,7 +469,7 @@ new Vue({
     methods: {
       // Action 通过 store.dispatch 方法触发
       doDispatch() {
-        this.$store.dispatch('setUserName', '真乖，赶紧关注公众号，组织都在等你~')
+        this.$store.dispatch('setUserName', '真乖，~')
       }
     }
   }

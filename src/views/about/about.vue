@@ -119,6 +119,9 @@ export default {
       isactive:true,
     }
   },
+  mounted(){
+      console.log( this.$store.state)
+  },
   methods: {
     bgHide(){
       this.isactive=!this.isactive
