@@ -70,6 +70,13 @@ export const constantRouterMap = [
     component: () => import("@/views/home/cardList")
   },
   {
+    path: "/cardOne",
+    meta: {
+      title: "银行"
+    },
+    component: () => import("@/views/home/cardOne")
+  },
+  {
     path: "/my",
     component: () => import("@/views/my/index"),
     redirect: "/my/center",

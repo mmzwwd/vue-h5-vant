@@ -1,45 +1,11 @@
 <template>
-  <div class='cardList'>
+  <div class='cardOne'>
     <div class="header">
       <div class="logo"><img class="logo-img" src="https://m.rong360.com/static/img/credit/bank/3.png" alt=""></div>
       <div class="info">
         <div class="name">光大银行</div>
         <div class="desc" style="color:#cdcddf;"> 星巴克专享送满40减20</div>
       </div>
-    </div>
-    <van-notice-bar mode="closeable">
-      技术是开发它的人的共同灵魂。
-    </van-notice-bar>
-    <van-collapse v-model="activeNames">
-      <van-collapse-item title="热门活动" title-class="title-wrap" :border="false" :value="'热门活动'" name="1" @change="">
-        <div class="activity">
-          <div class="tag">28元首卡奖励</div>
-          <div class="text">8月和9月未获得光大下卡奖且10月获得光大下卡奖，或10月新注册理事首次获得光大下卡奖励，可得28元首卡奖励 </div>
-        </div>
-        <div class="activity">
-          <div class="tag">28元首卡奖励</div>
-          <div class="text">10月申请且10月结算光大张数超过9月，即可获得38奖励。注：10月注册或9月下卡张数为0的理事，起步档位为1张；每人可获得奖励1次 </div>
-        </div>
-        <div class="activity">
-          <div class="tag">28元首卡奖励</div>
-          <div class="text">8月和9月未获得光大下卡奖且10月获得光大下卡奖，或10月新注册理事首次获得光大下卡奖励，可得28元首卡奖励 </div>
-        </div>
-      </van-collapse-item>
-      <van-collapse-item title="结算规则" title-class="title-wrap" :border="false" :value="'结算规则'" name="2" @change="">
-        <div class="sub-title">
-          <div class="text">支持城市</div>
-          <div class="text" style="margin-bottom: 20px;">无城市限制</div>
-          <div class="text">结算规则</div>
-          <div class="text">结算周期：<br> 终审通过后T+2自动结算。<br>首次申请光大银行信用卡，终审通过算成功办理此业务；没有通过审批则不会发放奖金。<br> 【光大极客最新流程】：
-            <br> 1、进件：提交5要素信息进件；<br>2、预审：收到预审和客户经理上门短信；<br> 3、初审：客户经理上门补全表单并提交，初审通过；<br>4、终审：终审通过邮寄卡片（终审结算点）<br>5、激活：可在阳光惠生活APP和网点激活使用；
-            <br> 锁定期说明：状态为“待查询”订单，锁定期30天，状态为“待再查”订单，锁定期90天。查到进度（审核中、待面签、待激活等），锁定期延长为90天。锁定期内未查到符合结算标准的进度，订单将出锁定期，变为失效订单无法结算。
-          </div>
-        </div>
-      </van-collapse-item>
-    </van-collapse>
-    <div class="text-area">
-      <div class="text-span">推荐银行</div>
-      <div class="text-span-one" @click="courseClick">推广教程</div>
     </div>
     <div class="body-list">
       <div class="item" v-for="item in list" @click="creditClick">
@@ -54,15 +20,16 @@
         </div>
       </div>
     </div>
+    <van-tabbar v-model="active">
+        <van-tabbar-item icon="home-o" to="/cardOne">信用卡办理</van-tabbar-item>
+        <van-tabbar-item icon="search" to="/order">订单查询</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import { NoticeBar } from 'vant';
-Vue.use(NoticeBar);
 export default {
-  name: 'cardList',
+  name: 'cardOne',
   data() {
     return {
       activeNames: ['1'],
@@ -83,7 +50,7 @@ export default {
 }
 </script>
 <style>
-.cardList .title-wrap {
+.cardOne .title-wrap {
   font-size: 20px;
   font-weight: 700;
   line-height: 30px;
@@ -91,8 +58,9 @@ export default {
 }
 </style>
 <style lang="scss"  scoped>
-.cardList {
+.cardOne {
   background: #fff;
+  min-height: 100%;
   .header {
     width: 100%;
     height: 48px;
