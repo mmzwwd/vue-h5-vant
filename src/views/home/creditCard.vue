@@ -2,9 +2,17 @@
   <div class='creditCard'>
     <img style="width: 100%;" src="https://static.rong360.com/upload/jpg/bb/c7/bbc76ab8875b86a82674a14be1c36e21.jpg" alt="">
     <div class="btn-container">
-      <div class="orange-btn" @click="scheduleClick">进度查询</div>
-      <div class="orange-btn orange-btns" @click="shoveClick">推荐亲友申请</div>
-      <van-cell class="orange-btn orange-btnty" @click="showPopup">本人申请</van-cell>
+     <van-row type="flex" justify="space-around">
+        <van-col span="7">
+          <van-button color="#f78400" plain class="orange-btn" @click="shoveClick">进度查询</van-button>
+        </van-col>
+        <van-col span="9">
+          <van-button color="#f78400"  plain class="orange-btn" @click="shoveClick">推荐亲友申请</van-button>
+        </van-col>
+        <van-col span="7">
+            <van-button class="orange-btnty" @click="showPopup">本人申请</van-button>
+        </van-col>
+      </van-row>
     </div>
     <van-popup v-model="show" round closeable>
       <div class="modal">
@@ -22,6 +30,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import { Col, Row } from 'vant';
+Vue.use(Col);
+Vue.use(Row);
 export default {
   name: 'creditCard',
   data() {
@@ -48,7 +60,7 @@ export default {
   text-align: center;
 }
 .btn-container .van-cell__value--alone {
-  color: #fff;
+  /* color: #fff; */
 }
 .van-popup--center.van-popup--round {
   border-radius: 6px;
@@ -107,25 +119,20 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 12px 20px;
+  padding: 12px 10px;
   background: hsla(0, 0%, 100%, 0.9);
-  display: flex;
-  .orange-btn {
-    width: 160px;
-    text-align: center;
-    line-height: 20px;
-    margin-right: 10px;
-    font-size: 16px;
+  // display: flex;
+  .orange-btn{
+    width: 100%;
     color: #f78400;
     border-radius: 22px;
     border: 1px solid #f78400;
-    padding: 10px 10px;
-  }
-  .orange-btns {
-    width: 200px;
   }
   .orange-btnty {
+    width: 100%;
     background: #f78400;
+    border: 1px solid #f78400;
+    border-radius: 22px;
     color: #fff;
   }
 }

@@ -256,6 +256,8 @@ import { logins} from '../../api/user';
         background: #FEC841;
         text-align: center;
         line-height: 24px;
+        font-size: 14px;
+        font-weight: 600;
         color: #fff;
       }
     }

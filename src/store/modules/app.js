@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 
 const state = {
   userName: '',
-  isOpen:Cookies.get(process.env.COOKIE_NAME + '_isOpen') || '',//判断来源  0-关注号进入 1-理事 2-客户
+  isOpen:Cookies.get('PRODUCTION' + '_isOpen') || '',//判断来源  0-关注号进入 1-理事 2-客户
 }
 const mutations = {
   SET_USER_NAME(state, name) {
@@ -10,7 +10,7 @@ const mutations = {
   },
   SET_IS_OPEN(state, name) {
     state.isOpen = name
-    Cookies.set(process.env.COOKIE_NAME + "_isOpen", name);
+    Cookies.set('PRODUCTION' + "_isOpen", name);
   }
   
 }
