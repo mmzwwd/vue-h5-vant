@@ -3,10 +3,10 @@
   <div class="index-container">
     <div class="warpper">
       <div class="warpper-bar">
-        个人中心
+        信用卡
         <span class="bar-span">
-          <van-icon class="iconSetting" name="setting-o" />
-          <van-icon class="iconComment" name="comment-o" />
+          <van-icon class="iconSetting" name="setting-o" size="0.62rem" @click="settingClick" />
+          <van-icon class="iconComment" name="comment-o" size="0.62rem" dot @click="noticeClick" />
         </span>
       </div>
       <div class="warpper-box">
@@ -79,6 +79,12 @@ import { logins} from '../../api/user';
   },
 
   methods: {
+    settingClick(){
+    this.$router.push('/setting')
+    },
+    noticeClick() {
+      this.$router.push('/notice')
+    },
     isOpenId(){
       let Data = {
         openId:'undefined'
@@ -133,16 +139,17 @@ import { logins} from '../../api/user';
       height: 50px;
       line-height: 50px;
       text-align: center;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 700;
       letter-spacing: 2px;
-      color: #303133;
+      color: #5a382b;
       position: relative;
+      padding-top: 10px;
       .bar-span{
       width: auto;
       display: block;
       position: absolute;
-      top:0;
+      top:10px;
       right:0;
       }
       .iconSetting{

@@ -25,7 +25,9 @@
 </template>
 
 <script>
-
+import Vue from 'vue';
+import { CellGroup } from 'vant';
+Vue.use(CellGroup);
 export default {
     //import引入的组件
     components: {},

@@ -128,8 +128,8 @@ export default {
           // for(let key in refs){
             refs[`imgss${i}`][0].appendChild(canvas1)
             // refs[imgss][0].appendChild(canvas1)
-            console.log(i)
-            console.log(refs[`imgss${i}`][0])
+            // console.log(i)
+            // console.log(refs[`imgss${i}`][0])
             html2canvas(refs[`qrmain${i}`][0] ,{
             useCORS: true, // 【重要】开启跨域配置
               allowTaint: true,//允许跨域图片
@@ -137,7 +137,7 @@ export default {
               }).then(canvas => {
               refs[`imgss${i}`][0].innerHTML = ''
               // console.log(canvas.toDataURL())
-              console.log( refs[`imgw${i}`])
+              // console.log( refs[`imgw${i}`])
               refs[`imgw${i}`][0].src = canvas.toDataURL()
             })
           // }     

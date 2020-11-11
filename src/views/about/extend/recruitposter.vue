@@ -4,12 +4,12 @@
       <propagate :propaglist="propaglist"> </propagate>
     </div>
     <div class="code">
-      <span class="span1">邀请码：682gbsl</span>
-      <span class="span2">复制</span>
+      <span class="span1">邀请码：{{invite}}</span>
+      <span class="span2" @click="copyLink(invite,'.span2')">复制</span>
     </div>
     <div class='tip'>长按图片可保存海报</div>
     <div class="btn">
-      <van-button class="btn-button" color="#ffa347" round block type="info" native-type="submit">
+      <van-button class="btn-button" @click="copyLink(jumpLink,'.btn-button')" color="#ffa347" round block type="info" native-type="submit">
         复制链接
       </van-button>
     </div>
@@ -18,10 +18,16 @@
 
 <script>
 import propagate from '@/components/att'
+import Clipboard from 'clipboard'
+import Vue from 'vue'
+import { Dialog } from 'vant'
+import u from "@/utils/publicMethod";
 export default {
   name: 'recruitposter',
   data() {
     return {
+      invite:'682gbsl',
+      jumpLink:'https://www.baidu.com/',
       propaglist: [
         {
         url:require('../../../assets/images/sing.png'),
@@ -50,7 +56,11 @@ export default {
   components: { propagate },
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    copyLink(data,doms) {
+      u.copyLink(data,doms)
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>

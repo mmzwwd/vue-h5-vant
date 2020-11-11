@@ -6,8 +6,8 @@
       <div class="warpper-bar">
         个人中心
         <span class="bar-span">
-          <van-icon class="iconSetting" name="setting-o" @click="settingClick" />
-          <van-icon class="iconComment" name="comment-o" dot @click="noticeClick" />
+          <van-icon class="iconSetting" name="setting-o" size="0.62rem" @click="settingClick" />
+          <van-icon class="iconComment" name="comment-o" size="0.62rem" dot @click="noticeClick" />
         </span>
       </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="warpper-right">
           <p class="warpper-right-p"> 姓名</p>
           <div class="warpper-right-div  right-div">136****1234 <span>理事</span></div>
-          <div class="warpper-right-div">申卡码：234532 <span class="warpper-right-span">复制</span></div>
+          <div class="warpper-right-div">申卡码：{{invite}} <span class="warpper-right-span" @click="copyLink(invite,'.warpper-right-span')">复制</span></div>
         </div>
         <div class="warpper-box-left">
          <div class="box-left-div">可提现收入 <span :class='{bg:isactive}' @click="bgHide()"> <van-icon name="eye-o" /></span></div>
@@ -63,6 +63,7 @@
 
 <script>
 import Vue from 'vue';
+import u from "@/utils/publicMethod";
 import { Divider,Icon } from 'vant';
 Vue.use(Divider);
 Vue.use(Icon);
@@ -70,12 +71,12 @@ export default {
   name: 'hello',
   data() {
     return {
+      invite:'682gbsl',
       user: { name: '', age: '', school: '' },
       routList:[
         { 
           name:'申卡订单',
-          to:'',
-          //order,
+          to:'order',
           icon:'balance-list-o'
         },
         { 
@@ -123,6 +124,9 @@ export default {
       console.log( this.$store.state)
   },
   methods: {
+    copyLink(data,doms) {
+      u.copyLink(data,doms)
+    },
     bgHide(){
       this.isactive=!this.isactive
     },
@@ -164,6 +168,7 @@ export default {
   height: auto;
   margin: 0 auto;
   .frames-span{
+    font-size: 16px;
   line-height: 22px;
   height: 22px;
   }
@@ -186,16 +191,18 @@ export default {
       height: 50px;
       line-height: 50px;
       text-align: center;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 700;
       letter-spacing: 2px;
-      color: #303133;
+      color: #5a382b;
       position: relative;
+      padding-top: 10px;
        .bar-span{
+         font-size: 16px;
       width: auto;
       display: block;
       position: absolute;
-      top:0;
+      top:10px;
       right:0;
       }
       .iconSetting{
@@ -305,6 +312,7 @@ export default {
         .box-right-button{
           width: auto;
           height: 30px;
+          line-height:34px;
           margin-left: 10px;
         }
       }

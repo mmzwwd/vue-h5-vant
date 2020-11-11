@@ -4,12 +4,12 @@
       <propag> </propag>
     </div>
     <div class="code">
-      <span class="span1">申卡码：682gbsl</span>
-      <span class="span2">复制</span>
+      <span class="span1">申卡码：{{invite}}</span>
+      <span class="span2" @click="copyLink(invite,'.span2')">复制</span>
     </div>
     <div class='tip'>长按图片可保存海报</div>
     <div class="btn">
-      <van-button class="btn-button" color="#ffa347" round block type="info" native-type="submit">
+      <van-button class="btn-button" @click="copyLink(jumpLink,'.btn-button')" color="#ffa347" round block type="info" native-type="submit">
         复制链接
       </van-button>
     </div>
@@ -22,15 +22,23 @@
 
 <script>
 import propag from '@/components/propag'
+import u from "@/utils/publicMethod";
 export default {
   name: 'singleposter',
   data() {
-    return {}
+    return {
+      invite:'682gbsl',
+      jumpLink:'https://www.baidu.com/',
+    }
+    
   },
   components: { propag },
   created() {},
   mounted() {},
   methods: {
+    copyLink(data,doms) {
+      u.copyLink(data,doms)
+    },
     treatyClick() {
       this.$router.push('/authorization')
     }
