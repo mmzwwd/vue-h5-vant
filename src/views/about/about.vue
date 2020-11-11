@@ -217,7 +217,7 @@ export default {
     }
   }
   .warpper-box {
-      width: 90%;
+      width: 88%;
       margin: 0 auto;
       height: 140px;
       margin-top: -30px;
@@ -319,7 +319,7 @@ export default {
   }
   .grade{
     background-image: url(./../../assets/images/beij.png);
-    width:90%;
+    width:88%;
     padding: 12px 10px;
     margin: 0 auto;
     height: 60px;
