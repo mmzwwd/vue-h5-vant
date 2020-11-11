@@ -17,17 +17,33 @@
 </template>
 
 <script>
-import propagate from '@/components/propagate'
-
+import propagate from '@/components/att'
 export default {
   name: 'recruitposter',
   data() {
     return {
       propaglist: [
-        'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHuy1OOTMw7564rZQkcK7OMWhpqiaMF0qwY2qwOPEP12asgWSES4cZkEmoXYhHdjZNH7ucNwUyJjA/132',
-        'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHuy1OOTMw7564rZQkcK7OMWhpqiaMF0qwY2qwOPEP12asgWSES4cZkEmoXYhHdjZNH7ucNwUyJjA/132',
-        'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHuy1OOTMw7564rZQkcK7OMWhpqiaMF0qwY2qwOPEP12asgWSES4cZkEmoXYhHdjZNH7ucNwUyJjA/132',
-        'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHuy1OOTMw7564rZQkcK7OMWhpqiaMF0qwY2qwOPEP12asgWSES4cZkEmoXYhHdjZNH7ucNwUyJjA/132'
+        {
+        url:require('../../../assets/images/sing.png'),
+        picture_path:require('../../../assets/images/tx.jpg'),
+        show:true,
+        },
+        {
+        url:require('../../../assets/images/sing.png'),
+        picture_path:require('../../../assets/images/tx.jpg'),
+        show:true,
+        },
+        {
+        url:require('../../../assets/images/sing.png'),
+        picture_path:require('../../../assets/images/tx.jpg'),
+        show:true,
+        },
+        {
+        url:require('../../../assets/images/sing.png'),
+        picture_path:require('../../../assets/images/tx.jpg'),
+        show:true,
+        },
+        
       ]
     }
   },

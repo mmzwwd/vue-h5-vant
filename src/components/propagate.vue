@@ -2,7 +2,7 @@
   <div class='singleposter'>
     <van-swipe class="my-swipe" :loop="false" :width="288" :show-indicators="false" :swipeTo="3">
       <van-swipe-item v-for="(item,index) in propaglists" :key="index">
-        <div class="poster-lists">
+        <div class="poster-lists" ref="qrmain">
           <img class="poster-img" :src="require('./../assets/images/sing.png')" alt="">
           <div class="poster-div">
             <img class="poster-div-img" :src="require('./../assets/images/eem.png')" alt="">
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { qrcanvas } from 'qrcanvas'
+import html2canvas from 'html2canvas'
 export default {
   name: 'singleposter',
   props: {
@@ -34,6 +36,7 @@ export default {
   },
   data() {
     return {
+      show: true,
       propaglists: this.propaglist
     }
   },
@@ -44,8 +47,27 @@ export default {
   },
   components: {},
   created() {},
-  mounted() {},
-  methods: {}
+  mounted() {
+      this.generateQrcode()
+  },
+  methods: {
+     async generateQrcode() {
+      this.showQr = true
+      let canvas1 = qrcanvas({
+        data: decodeURIComponent('http://daoshi.yingheit.com/'),
+        size: 80
+      })
+      setTimeout(() => {
+        this.$refs.imgss.appendChild(canvas1)
+        html2canvas(this.$refs.qrmain).then(canvas => {
+          this.$refs.imgss.innerHTML = ''
+          console.log(canvas.toDataURL())
+          this.$refs.img.src = canvas.toDataURL()
+          this.show = false
+        })
+      }, 100)
+    }
+  }
 }
 </script>
 <style>

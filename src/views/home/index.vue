@@ -51,8 +51,8 @@ import { logins} from '../../api/user';
     return {
       img: './../../assets/img/image/backg.png',
       images: [
-        require('./../../assets/img/MovieDetails/jz2.jpg'),
-        require('./../../assets/img/MovieDetails/jz2.jpg'),
+        'https://static.rong360.com/cimg/8c/8c9dc2114de92c9d85814bf0238b5e0a06ebba40.jpeg',
+        'https://static.rong360.com/cimg/dd/dd5304ffa16edb7eafabbb1aa97d01905ef07e86.jpeg',
         require('./../../assets/img/MovieDetails/jz3.jpg'),
         require('./../../assets/img/MovieDetails/jz4.jpg')
       ],
