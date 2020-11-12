@@ -1,22 +1,24 @@
 <!-- home -->
 <template>
   <div class="index-container">
-    <div class="warpper">
-      <div class="warpper-bar">
-        信用卡
-        <span class="bar-span">
-          <van-icon class="iconSetting" name="setting-o" size="0.62rem" @click="settingClick" />
-          <van-icon class="iconComment" name="comment-o" size="0.62rem" dot @click="noticeClick" />
-        </span>
+    <div class="ap-warpper">
+      <div class="warpper">
+        <div class="warpper-bar">
+          信用卡
+          <span class="bar-span">
+            <van-icon class="iconSetting" name="setting-o" size="0.62rem" @click="settingClick" />
+            <van-icon class="iconComment" name="comment-o" size="0.62rem" dot @click="noticeClick" />
+          </span>
+        </div>
+        <div class="warpper-box">
+          <van-swipe class="my-swipe" style="height:100%;" :autoplay="5000" indicator-color="white">
+            <van-swipe-item v-for="(image, index) in images" :key="index">
+              <img class="my-swipe-img" :src="image" alt="">
+            </van-swipe-item>
+          </van-swipe>
+        </div>
       </div>
-      <div class="warpper-box">
-        <van-swipe class="my-swipe" style="height: 120px;" :autoplay="5000" indicator-color="white">
-          <van-swipe-item v-for="(image, index) in images" :key="index">
-            <img class="my-swipe-img" :src="image" alt="">
-          </van-swipe-item>
-        </van-swipe>
-      </div>
-    </div>
+     </div>
     <div class="banner">
       <div class="banner-div">
         <img class="banner-img" v-for="(image, index) in images" :key="index" :src="image" alt="">
@@ -126,6 +128,9 @@ import { logins} from '../../api/user';
 </style>
 <style lang="scss" scoped>
 .index-container {
+  .ap-warpper{
+    height: 200px;
+  }
   .warpper {
     width: 100%;
     height: 100px;
@@ -172,7 +177,7 @@ import { logins} from '../../api/user';
   .banner {
     width: 98%;
     height: 70px;
-    margin-top: 90px;
+    // margin-top: 90px;
     overflow: hidden;
     .banner-div::-webkit-scrollbar {
       display: none;
