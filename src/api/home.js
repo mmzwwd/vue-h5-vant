@@ -15,8 +15,8 @@ import apiPath from './index.js'
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {
     axios.defaults.baseURL = 'http://39.103.129.89:8087/';
-} else if (process.env.NODE_ENV == 'debug') {
-    axios.defaults.baseURL = '';
+} else if (process.env.NODE_ENV == 'staging') {
+    axios.defaults.baseURL = 'http://39.103.129.89:8080/';
 } else if (process.env.NODE_ENV == 'production') {
     axios.defaults.baseURL = 'http://api.123dailu.com/';
 }
