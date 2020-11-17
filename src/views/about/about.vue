@@ -27,8 +27,8 @@
          <div class="box-left-div2">(总收入100.00元)</div>
         </div>
         <div class="warpper-box-right">
-          <van-button class="box-right-button" color="#dcdcdc" type="primary" round  @click="cashOutClick">提现</van-button>
-          <van-button class="box-right-button" color="#fba979" round  plain @click="bannerClick">明细</van-button>
+          <van-button class="box-right-button" color="#dcdcdc" size="small" type="primary"   @click="cashOutClick">提现</van-button>
+          <van-button class="box-right-button" color="#fba979" size="small"  plain @click="bannerClick">明细</van-button>
         </div>
     </div>
     <div class="grade" @click='levelIndex'>
@@ -42,7 +42,7 @@
           <template #title>
            <span class="frames-span">
               <!-- <img class="frames-img" :src="require('../../assets/img/image/tg.png')" alt="">  -->
-            <van-icon size="0.5rem" :name="item.icon" style="vertical-align: middle;" />
+            <van-icon size="0.6rem" :name="item.icon" style="margin-right: 4px;" />
             {{item.name}}</span>
           </template>
         </van-cell>
@@ -52,7 +52,7 @@
           <template #title>
            <span class="frames-span">
               <!-- <img class="frames-img" :src="require('../../assets/img/image/tg.png')" alt="">  -->
-              <van-icon  size="0.5rem" style="vertical-align: middle;" :name="item.icon" />
+              <van-icon  size="0.6rem" style="margin-right: 4px;" :name="item.icon" />
             {{item.name}}</span>
           </template>
         </van-cell>
@@ -169,8 +169,10 @@ export default {
   margin: 0 auto;
   .frames-span{
     font-size: 16px;
-  line-height: 22px;
-  height: 22px;
+    line-height: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
   }
   .frames-img{
     width: 22px;
@@ -310,9 +312,9 @@ export default {
         margin-top: 30px;
         float: right;
         .box-right-button{
+          padding: 0 15px;
           width: auto;
-          height: 30px;
-          line-height:34px;
+          border-radius: 12px;
           margin-left: 10px;
         }
       }

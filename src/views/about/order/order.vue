@@ -173,8 +173,7 @@ export default {
         width: auto;
         height: 26px;
         margin: 0 5px;
-        font-size: 10px;
-        line-height: 26px;
+        font-size: 12px;
       }
 
       .query {

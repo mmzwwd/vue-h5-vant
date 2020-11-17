@@ -2,9 +2,9 @@
   <div class='register'>
     <div class="box">
       <van-form @submit="onSubmit">
-        <van-field v-model="tel" type="tel" label="邀请码" :rules="[{ required: true }]" placeholder="请输入邀请码" />
-        <van-field v-model="tel" type="tel" label="身份证" :rules="[{ required: true }]" placeholder="请输入身份证" />
-        <van-field v-model="tel" type="tel" label="微信号" :rules="[{ required: true }]" placeholder="请输入微信号" />
+        <van-field v-model="code" type="code" label="邀请码" :rules="[{ required: true }]" placeholder="请输入邀请码" />
+        <van-field v-model="sfz" type="sfz" label="身份证" :rules="[{ required: true }]" placeholder="请输入身份证" />
+        <van-field v-model="wxh" type="wxh" label="微信号" :rules="[{ required: true }]" placeholder="请输入微信号" />
         <van-field v-model="tel" type="tel" label="手机号" :rules="[{ required: true }]" placeholder="请输入手机号" />
         <van-field v-model="sms" center clearable label="短信验证" :rules="[{ required: true}]" placeholder="请输入短信验证码">
           <template #button>
@@ -36,6 +36,11 @@ export default {
       activeClass: false,
       show: true,
       count: '',
+      code:'',
+      sfz:"",
+      wxh:'',
+      tel:'',
+      sms:'',
       timer: null
     }
   },
@@ -43,6 +48,9 @@ export default {
   created() {},
   mounted() {},
   methods: {
+     onSubmit(values) {
+      console.log('submit', values);
+    },
     getItem() {
       this.activeClass = !this.activeClass
     },

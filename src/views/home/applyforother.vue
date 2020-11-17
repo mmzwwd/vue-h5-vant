@@ -3,8 +3,8 @@
     <div class="padding-to">
       <p class="title">更换申请信息</p>
       <van-form validate-first @failed="onFailed">
-        <van-field v-model="name" type="tel" placeholder="请输入申请人真实姓名" label="姓名" :rules="[{ required: true }]" />
-        <van-field v-model="tel" type="tel" placeholder="请输入申请人真实身份证号" label="身份证号" :rules="[{ required: true}]" />
+        <van-field v-model="name" type="name" placeholder="请输入申请人真实姓名" label="姓名" :rules="[{ required: true }]" />
+        <van-field v-model="sfz" type="sfz" placeholder="请输入申请人真实身份证号" label="身份证号" :rules="[{ required: true}]" />
         <van-field v-model="tel" type="tel" placeholder="请输入申请人手机号" maxlength="11" label="手机号" :rules="[{ required: true }]" />
         <van-field v-model="sms" center clearable label="短信验证码" maxlength="6" placeholder="请输入短信验证码" :rules="[{ required: true ,max:4,}]">
           <template #button>
@@ -43,6 +43,7 @@ export default {
       checked: true,
       text: '',
       tel: '',
+      sfz:'',
       digit: '',
       sms: ''
     }
