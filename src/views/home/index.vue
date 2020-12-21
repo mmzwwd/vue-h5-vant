@@ -13,7 +13,7 @@
         <div class="warpper-box">
           <van-swipe class="my-swipe" style="height:100%;" :autoplay="5000" indicator-color="white">
             <van-swipe-item v-for="(image, index) in images" :key="index">
-              <img class="my-swipe-img" :src="image" alt="">
+              <img class="my-swipe-img" :src="image.imageurl" alt="">
             </van-swipe-item>
           </van-swipe>
         </div>
@@ -21,7 +21,7 @@
      </div>
     <div class="banner">
       <div class="banner-div">
-        <img class="banner-img" v-for="(image, index) in images" :key="index" :src="image" alt="">
+        <img class="banner-img" v-for="(image, index) in images" :key="index" :src="image.imageurl" alt="">
       </div>
     </div>
     <div class="text">
@@ -30,11 +30,11 @@
     </div>
     <div class="bank-list">
       <div class="copartner" v-for="(item,index) in list" :key="index" @click="cardListCliack(item.id)">
-        <div class="logo"><img style="width: 100%;" src="https://m.rong360.com/static/img/credit/bank/3.png" alt=""></div>
+        <div class="logo"><img style="width: 100%;" :src="item.iconImage" alt=""></div>
         <div class="name">{{item.name}}</div>
-        <div class="tags"><span style="background: rgba(250,100,0,.08);margin: 0 auto;">终审T+2自动结算</span></div>
-        <div class="desc"><span>首刷赠送饿了么会员</span></div>
-        <div class="red-btn">奖励￥170</div>
+        <div class="tags"><span style="background: rgba(250,100,0,.08);margin: 0 auto;">{{item.settlementInterval}}</span></div>
+        <div class="desc"><span>{{item.specialOffer}}</span></div>
+        <div class="red-btn">奖励￥{{item.bounty}}</div>
       </div>
     </div>
     <!-- <van-cell icon="success" v-for="item in list" :key="item" :title="item" /> -->
@@ -43,7 +43,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { logins} from '../../api/user';
+import { logins,recommendBankall,bannerall} from '../../api/user';
 
   export default {
     computed: {
@@ -52,35 +52,36 @@ import { logins} from '../../api/user';
   data() {
     return {
       img: './../../assets/img/image/backg.png',
-      images: [
-        'https://static.rong360.com/cimg/8c/8c9dc2114de92c9d85814bf0238b5e0a06ebba40.jpeg',
-        'https://static.rong360.com/cimg/dd/dd5304ffa16edb7eafabbb1aa97d01905ef07e86.jpeg',
-        require('./../../assets/img/MovieDetails/jz3.jpg'),
-        require('./../../assets/img/MovieDetails/jz4.jpg')
-      ],
-      list: [
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 },
-        { name: '光大银行', id: 123 }
-      ]
+      images: [],
+      list: []
     }
   },
   mounted() {
-    this.isOpenId()
+    // this.isOpenId()
+    this.bankscontroller()
+    this.bannerall()
   },
 
   methods: {
+    bannerall(){
+      let data={
+        loginId:"",
+        accessToken:"",
+      }
+      bannerall(data).then(res=>{
+        console.log(res)
+        this.images=res.data
+      })
+    },
+    bankscontroller(){
+    let Data = {
+      accessToken:"",
+      loginId:"",
+      };
+      recommendBankall(Data).then(res => {   
+        this.list=  res.data
+      })
+    },
     settingClick(){
     this.$router.push('/setting')
     },
@@ -253,6 +254,9 @@ import { logins} from '../../api/user';
         padding: 0 2px;
         text-align: center;
         display: flex;
+        span{
+          padding: 0 2px;
+        }
       }
       .desc {
         width: 90%;
@@ -263,6 +267,9 @@ import { logins} from '../../api/user';
         margin-bottom: 8px;
         white-space: nowrap;
         overflow: hidden;
+        span{
+          transform: scale(0.9);
+        }
       }
       .red-btn {
         background: #FEC841;

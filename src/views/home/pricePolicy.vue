@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { incentivePolicyall} from '../../api/user';
+
 export default {
   name: 'pricePolicy',
   data() {
@@ -35,98 +37,46 @@ export default {
         column: [
           {
             label: '银行',
-            prop: 'roomType'
+            prop: 'recommendBankName'
           },
           {
             label: '结算节点',
-            prop: 'closedAccount'
+            prop: 'settlementNode'
           },
           {
             label: '奖励金',
-            prop: 'noAccount'
+            prop: 'bounty'
           },
           {
             label: '结算方式',
-            prop: 'givePrice'
+            prop: 'settlementWay'
           },
           {
             label: '发短信后结算时长',
-            prop: 'totalPrice'
+            prop: 'sendMsgSettlementTime'
           }
         ]
       },
-      tableData: [
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        },
-        {
-          imgs: 'https://m.rong360.com/static/img/credit/bank/2.png',
-          closedAccount: '批卡结算',
-          givePrice: '查询结算或T+2自动结算',
-          noAccount: 130,
-          roomType: '平安初审版',
-          totalPrice: '查询批卡成功后实时结算或T+2个工作日自动结算'
-        }
-      ]
+      tableData: []
     }
   },
   components: {},
   created() {},
-  mounted() {},
-  methods: {}
+  mounted() {
+    this.incentivePolicyall()
+  },
+  methods: {
+    incentivePolicyall(){
+      let data={
+        loginId:"",
+        accessToken:"",
+      }
+      incentivePolicyall(data).then(res=>{
+        console.log(res)
+        this.tableData=res.data
+      })
+    },
+  }
 }
 </script>
 <style lang="scss"  scoped>

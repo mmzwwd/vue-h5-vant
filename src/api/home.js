@@ -14,7 +14,7 @@ import apiPath from './index.js'
 
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {
-    axios.defaults.baseURL = 'http://39.103.129.89:8087/';
+    axios.defaults.baseURL = 'http://39.106.172.159:9017/';
 } else if (process.env.NODE_ENV == 'staging') {
     axios.defaults.baseURL = 'http://39.103.129.89:8080/';
 } else if (process.env.NODE_ENV == 'production') {

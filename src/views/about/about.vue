@@ -56,6 +56,7 @@
             {{item.name}}</span>
           </template>
         </van-cell>
+        <van-cell title="退出登陆"  size="large" icon="location-o" @click="" is-link />
       </div>
     </div>
   </div>

@@ -61,6 +61,8 @@
 import Vue from 'vue';
 import { NoticeBar } from 'vant';
 Vue.use(NoticeBar);
+import {recommendBankretrieve} from '../../api/user';
+
 export default {
   name: 'cardList',
   data() {
@@ -71,8 +73,18 @@ export default {
   },
   components: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.recommendBankretrieve()
+  },
   methods: {
+    recommendBankretrieve(){
+      let Data={
+        id:2
+      }
+      recommendBankretrieve(Data).then(res => {   
+        this.list=  res.data
+      })
+    },
     courseClick() {
       this.$router.push('/pushTutorial')
     },
@@ -96,7 +108,7 @@ export default {
   .header {
     width: 100%;
     height: 48px;
-    padding: 20px 0 20px 20px;
+    padding: 20px 0 20px 0px;
     background-image: url('./../../assets/img/image/upload.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -105,6 +117,7 @@ export default {
       height: 48px;
       background: #fff;
       border-radius: 50%;
+      margin-left: 20px;
       float: left;
       .logo-img {
         width: 30px;
